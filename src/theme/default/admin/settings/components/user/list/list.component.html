@@ -1,0 +1,40 @@
+<div class="settings-right-wrapper">
+    <div class="flex setting-inner-header">
+        <h3>{{'Settings.User.UserList' | translate}}</h3>
+        <button class="btn" (click)=" AddeNewUser()"><img
+                src="assets/img/add-white-ico.png">{{'Settings.User.AddNewUser' | translate}}</button>
+    </div>
+
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">{{'Settings.User.UserName' | translate}}</th>
+                <th scope="col">{{'Settings.User.EmailId' | translate}}</th>
+                <th scope="col">{{'Settings.User.Role' | translate}}</th>
+                <th scope="col">{{'Settings.User.Action' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let userlist of sandbox.getUsersList$ | async; let i=index">
+                <td>{{userlist.firstName}} {{userlist.lastName}}</td>
+                <td>{{userlist.email}}</td>
+                <td>{{userlist.usergroup.name}}</td>
+                <td><i (click)="editUser(userlist)" class="fas fa-edit"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<mat-paginator
+        [length]="sandbox.getuserpagelength$ | async"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[pageSize]"
+        (page)="onPageChange($event)">
+</mat-paginator>
+
+
+
+
+

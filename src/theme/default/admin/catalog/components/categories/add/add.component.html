@@ -1,0 +1,176 @@
+<!--REACTIVE FORM-->
+<form novalidate (ngSubmits)="onSubmits(user.value)" [formGroup]="user">
+
+    <div class="row products-section">
+        <div class="col-12">
+            <div class="breadcrumbs-row noborder">
+                <div class="bc-col">
+                    <ul>
+                        <li><a href="javascript:void(0)">{{'catalog.categories.Catalog'| translate}} </a></li>
+                        <li>{{'catalog.categories.AddCategory'| translate}}</li>
+                    </ul>
+                </div>
+                <div class="bc-col-btn ap-col-btn">
+                    <button class="btn btn-save" (click)="onSubmits(user)"><img
+                            src="assets/img/tick-round-white.png"> {{'catalog.categories.Save'| translate}}
+                    </button>
+                    <button class="btn btn-cancel" [routerLink]="['/catalog/categories']"><img
+                            src="assets/img/close-white-ico.png">{{'catalog.categories.Cancel'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!--Breadcrumbs-->
+    </div>
+
+    <div class="flex addproduct-wrap">
+
+        <div class="card ap-general">
+            <div class="ap-header">
+                <span> 1 </span> {{'catalog.product.General'| translate}}
+            </div>
+            <div class="flex ap-body">
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>{{'catalog.categories.CategoryName'| translate}} <sup>*</sup></label>
+                        <input type="text" class="form-control"
+                               placeholder="{{'catalog.categories.CategoryName'| translate}}"
+                               formControlName="categoryName"
+                               [ngClass]="{'validationcolor':user.get('categoryName').hasError('required') && user.get('categoryName').touched&&submittedValues==true}">
+
+                        <div class="error"
+                             *ngIf="(user.get('categoryName').hasError('required') && user.get('categoryName').touched&&submittedValues==true)">
+                            {{'catalog.Error.CategoryNameRequired'| translate}}
+                        </div>
+
+
+                    </div>
+                </div>
+                <!--Col-->
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>{{'catalog.product.MetaTagTitle'| translate}}</label>
+                        <input type="text" class="form-control"
+                               placeholder="{{'catalog.product.MetaTagTitle'| translate}}"
+                               formControlName="categoryTitle">
+                    </div>
+                </div>
+                <!--Col-->
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>{{'catalog.categories.MetaTagDescription'| translate}} </label>
+                        <input type="text" class="form-control" placeholder="Meta Tag Description"
+                               formControlName="categoryDescription">
+                    </div>
+                </div>
+                <!--Col-->
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label> {{'catalog.categories.MetaTagKeyword'| translate}} </label>
+                        <input type="text" class="form-control"
+                               placeholder="{{'catalog.categories.MetaTagKeyword'| translate}}"
+                               formControlName="categoryKeyword">
+                    </div>
+                </div>
+                <!--Col-->
+            </div>
+        </div>
+        <!--General-->
+
+        <div class="card ap-general ap-info">
+            <div class="ap-header">
+                <span> 2 </span> {{'catalog.product.MoreInformation'| translate}}
+            </div>
+            <div class="flex ap-body">
+                <ngb-tabset style="width:100%;">
+                    <ngb-tab>
+                        <!--<ng-template ngbTabTitle>Data</ng-template>-->
+                        <ng-template ngbTabContent>
+                            <div class="flex data-row">
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'catalog.categories.Parent'| translate}}</label>
+                                        <select class="custom-select col-12" id="categoryComponent"
+                                                formControlName="categoryComponent">
+                                            <option value=''>- -Select- -</option>
+                                            <option selected *ngFor="let arr of sandbox.getCategoriesList$ | async"
+                                                    value={{arr.categoryId}}>{{arr.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="data-col" style="margin-left: 3%">
+                                    <div class="form-group">
+                                        <label>{{'catalog.categories.SortOrder'| translate}}<sup>*</sup></label>
+                                        <input type="text" class="form-control"
+                                               placeholder="{{'catalog.product.SortOrder'| translate}}"
+                                               formControlName="categorySortOrder" appOnlyNumber
+                                               [ngClass]="{'validationcolor':user.get('categorySortOrder').hasError('required') && user.get('categorySortOrder').touched&&submittedValues==true}">
+                                        <div class="error"
+                                             *ngIf="(user.get('categorySortOrder').hasError('required') && user.get('categorySortOrder').touched&&submittedValues==true)">
+                                            {{'catalog.Error.SortOrderRequired'| translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </div>
+        </div>
+        <!--More Information-->
+
+        <ng-template #content let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Image Manager</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="flex search-nav">
+                    <div class="search-section">
+                        <input placeholder="Search" type="text">
+                    </div>
+                    <div class="img-action-links">
+                        <ul class="flex" id="menu">
+                            <li><a href="javascript:void(0)"> <img src="assets/img/back-ico.png"> </a></li>
+                            <li><a href="javascript:void(0)"> <img src="assets/img/refresh-ico.png"> </a></li>
+                            <li>
+                                <input id="check01" type="checkbox" name="menu"/>
+                                <label for="check01"><img src="assets/img/file-open-ico.png"></label>
+                                <ul class="submenu">
+                                    <li>Create Folder</li>
+                                    <li>
+                                        <input type="text">
+                                        <button> Create</button>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0)"> <img src="assets/img/delete-file-ico.png"> </a></li>
+                            <li><a href="javascript:void(0)" class="upload-lnk"> Upload </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flex image-row">
+                    <div class="image-col">
+                        <div class="img-bdy"><img src="assets/img/file-img.png"></div>
+                        <p>Image Folder 1</p>
+                    </div>
+                    <!--Col-->
+                    <div class="image-col">
+                        <div class="img-bdy"><img src="assets/img/file-img.png"></div>
+                        <p>Image Folder 2</p>
+                    </div>
+                    <!--Col-->
+                    <div class="image-col">
+                        <div class="img-bdy"><img src="assets/img/product-img-bg1.png"></div>
+                        <p>img.jpg</p>
+                    </div>
+                    <!--Col-->
+                </div>
+            </div>
+        </ng-template>
+
+    </div>
+</form>

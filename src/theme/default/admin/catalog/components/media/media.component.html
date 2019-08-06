@@ -1,0 +1,96 @@
+<br>
+<div class="image" style="border-bottom: 1px solid;">
+    <h3 class="h" style="padding-left: 12px;">Image Manager</h3><br>
+</div>
+<br>
+
+<div class="imgs" style="    border-bottom: 1px solid;">
+
+    <div class="toalgin">
+
+        <div class="row">
+
+            <div class="col-sm-1">
+
+                <button class="btn" (click)="Back()"><i class="fa fa-arrow-left"></i></button>
+            </div>
+
+            <div class="col-sm-1">
+
+                <button class="btn" (click)=" home()"><i class="fa fa-home"></i></button>
+            </div>
+
+            <div class="col-sm-1">
+                <!--<button  class="btn" (click)="Folder()">fold</button>-->
+
+                <button class="btn" placement="bottom" [autoClose]="'outside'"
+                        [ngbPopover]="folder">
+
+                    <i class="fa fa-folder"></i>
+                </button>
+            </div>
+
+            <div class="col-sm-1">
+
+                <button class="btn" (click)="trash()"><i class="fa fa-trash"></i></button>
+            </div>
+
+            <div class="col-sm-8">
+
+                <label class="btn-bs-file">
+                    <i class="fa fa-upload"></i>
+                    <input type="file" (change)="docufile($event)"/>
+                </label>
+            </div>
+
+        </div>
+
+    </div>
+
+    <br>
+
+</div>
+
+<br>
+
+<div class="scrollbar square scrollbar-lady-lips thin" *ngIf="homeTouched==true"
+     style="padding-left: 39px;min-width: 710px;">
+    <div class="force-overflow">
+        <div *ngFor="let folder of folderFilters">
+      <span><img src="../assets/folder_PNG8773.png" height="42" width="42" (click)="clickfolder(folder.sum)">
+          {{folder.last}}<input type="checkbox" value="{{folder.sum}}" (change)="fileCheckBox($event,value)"></span>
+        </div>
+        <br>
+        <div *ngFor="let images of nameFiltered">
+            <br>
+            <!--https://spurtcommerce.s3.amazonaws.com/-->
+            <!--/'+images.val-->
+            <span><img [src]=" 'https://spurtcommerce.s3.amazonaws.com/'+images.val " style="height: 112px;
+    width: 161px;"><input type="checkbox" value="{{images.val}}" (change)="fileCheckBox($event,value)">{{images.names}}</span>
+            <br><br>
+        </div>
+        <div *ngFor="let doc of documentFiltered">
+            <br>
+            <span><img src="../assets/clipboard-512.png" style="height: 112px;
+    width: 161px;" (click)="Go()"><input type="checkbox" value="{{doc}}"
+                                         (change)="fileCheckBox($event,value)">{{doc}}</span>
+            <br><br>
+        </div>
+    </div>
+</div>
+
+<ng-template #folder>
+    <div>
+        <br>
+        <input type="text" [(ngModel)]="textvalue">
+        <br>
+        <br>
+        <button class="w3-button w3-green" (click)="Folder()">Create</button>
+    </div>
+
+</ng-template>
+
+
+
+
+

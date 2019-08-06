@@ -1,0 +1,61 @@
+<app-catalog-header></app-catalog-header>
+<div class="row products-section">
+    <div class="col-12">
+        <div class="card">
+            <div class="product-ts-left">
+                <ul>
+                    <li>
+                        <p>{{'catalog.categories.TotalProduct'| translate}}</p>
+                        <h3>{{layoutSandbox.totalProductCount$ | async}}
+                            <button type="button" class="btn" placement="right" ngbTooltip="Tooltip on right">
+                                <img src="assets/img/info-ico.png"></button>
+                        </h3>
+                    </li>
+                    <li>
+                        <p>{{'catalog.categories.ActiveProduct'| translate}}</p>
+                        <h3>{{layoutSandbox.activeProductCount$ | async}}
+                            <button type="button" class="btn" placement="right"
+                                    ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
+                                <img src="assets/img/info-ico.png"></button>
+                        </h3>
+                    </li>
+                    <li>
+                        <p>{{'catalog.categories.In-ActiveProduct'| translate}}</p>
+                        <h3>{{layoutSandbox.inActiveProductCount$ | async}}
+                            <button type="button" class="btn" placement="right"
+                                    ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
+                                <img src="assets/img/info-ico.png"></button>
+                        </h3>
+                    </li>
+                    <li>
+                        <p>{{'catalog.categories.TotalCategory'| translate}}</p>
+                        <h3>{{layoutSandbox.totalCatagoryCount$ | async}}
+                            <button type="button" class="btn" placement="right"
+                                    ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
+                                <img src="assets/img/info-ico.png"></button>
+                        </h3>
+                    </li>
+                    <li>
+                        <p>{{'catalog.categories.FeaturedProduct'| translate}}</p>
+                        <h3>{{layoutSandbox.featuredProductCount$ | async}}
+                            <button type="button" class="btn" placement="right"
+                                    ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
+                                <img src="assets/img/info-ico.png"></button>
+                        </h3>
+                    </li>
+                    <li>
+                        <p>{{'catalog.categories.TotalBrand'| translate}}</p>
+                        <h3>{{brandSandbox.getManufacturercount$|async}}
+                            <button type="button" class="btn" placement="left"
+                                    ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
+                                <img src="assets/img/info-ico.png"></button>
+                        </h3>
+                    </li>
+                </ul>
+            </div>
+            <!--Left-->
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

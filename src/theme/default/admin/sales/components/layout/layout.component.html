@@ -1,0 +1,35 @@
+<app-sales-header></app-sales-header>
+<div class="row products-section">
+  <div class="col-12">
+    <div class="card">
+      <div class="product-ts-left">
+        <ul>
+          <li>
+            <p>{{'Sales.Orders.TotalOrder'| translate}}</p>
+            <h3>{{layoutSandbox.totalOrderCount$ | async}}  <button type="button" class="btn" placement="right" ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
+                <img src="assets/img/info-ico.png"> </button></h3>
+          </li>
+          <li>
+            <p>{{'Sales.Orders.TodayOrder'| translate}}</p>
+            <h3>{{layoutSandbox.todayOrderCount$ | async}}  <button type="button" class="btn" placement="right" ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
+                <img src="assets/img/info-ico.png"> </button></h3>
+          </li>
+          <li>
+            <p>{{'Sales.Orders.TotalOrderAmount'| translate}}</p>
+            <h3> {{(layoutSandbox.totalOrderAmount$ | async) | currency:'INR'}}  <button type="button" class="btn" placement="right" ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
+                <img src="assets/img/info-ico.png"> </button></h3>
+          </li>
+          <li>
+            <p>{{'Sales.Orders.TodayOrderAmount'| translate}}</p>
+            <h3>{{(layoutSandbox.todayOrderAmount$ | async) | currency:'INR'}}  <button type="button" class="btn" placement="left" ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
+                <img src="assets/img/info-ico.png"> </button></h3>
+          </li>
+        </ul>
+      </div>
+      <!--Left-->
+      
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

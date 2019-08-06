@@ -1,0 +1,49 @@
+<div class="settings-right-wrapper addnewuser">
+    <div class="flex setting-inner-header">
+        <h3>{{'Settings.personalize.product.SettingsPath' | translate}}</h3>
+    </div>
+
+    <div class="new-user">
+        <form [formGroup]="perProductForm" class="form-horizontal m-t-20">
+            <div class="row">
+
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.personalize.product.CategoryProductCount' | translate}}</label>
+                        <div class="radio">
+                            <mat-radio-group formControlName="productCount" fxLayout="column" fxLayoutGap=".25rem">
+                                <mat-radio-button
+                                        [value]="'Yes'">{{'Settings.personalize.product.Yes' | translate}}</mat-radio-button>
+                                <mat-radio-button
+                                        [value]="'No'">{{'Settings.personalize.product.No' | translate}}</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.personalize.product.DefaultItemsPerPage' | translate}}<sup class="supvalidation">*</sup></label>
+                        <input type="text" formControlName="itemPage"
+                               class="form-control"/>
+
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="flex user-btn">
+                        <button (click)="onSubmit()" type="submit"
+                                class="btn btn-add">{{'Settings.personalize.product.Save' | translate}}</button>
+                        <button [routerLink]="['/dashboard']"
+                                class="btn btn-cancel">{{'Settings.personalize.product.Cancel' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+

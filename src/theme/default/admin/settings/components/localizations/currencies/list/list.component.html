@@ -1,0 +1,68 @@
+<div class="settings-right-wrapper">
+    <div class="flex setting-inner-header">
+        <h3>{{'Settings.Local.Currency.SettingsLocalizationCurrenciesPath' | translate}}</h3>
+        <button class="btn" (click)="addCurrency()"><img
+                src="assets/img/add-white-ico.png"> {{'Settings.Local.Currency.AddCurrency' | translate}}
+        </button>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{'Settings.Local.Currency.CurrencyTitle' | translate}}</th>
+                <th>{{'Settings.Local.Currency.Code' | translate}}</th>
+                <th>{{'Settings.Local.Currency.Value' | translate}}</th>
+                <th>{{'Settings.Local.Currency.LastUpdate' | translate}}</th>
+                <th>{{'Settings.Local.Emailtemplate.Status' | translate}}</th>
+                <th>{{'Settings.Local.Currency.Action' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let currencylist of (sandbox.currencyList$|async); let i=index">
+                <td>{{currencylist.title}}</td>
+                <td>{{currencylist.code}}</td>
+                <td>{{currencylist.value}}</td>
+                <td>{{currencylist.modifiedDate ? (currencylist.modifiedDate | date:" dd/MM/yyyy") : 'NA'}}</td>
+                <td>
+                    <div *ngIf="currencylist.isActive === 1">{{'Settings.Local.StockStatus.Active' | translate}}</div>
+                    <div *ngIf="currencylist.isActive === 0">{{'Settings.Local.StockStatus.InActive' | translate}}</div>
+                </td>
+                <td style="cursor:pointer">
+                    <img src='assets/img/edit-ico.png' (click)="editCurrency(currencylist)" class="icon">
+                    <img src='assets/img/delete-file-ico.png' [ngbPopover]="deleteContent" placement="bottom"
+                         #deletePop="ngbPopover" class="icon"/>
+                    <ng-template #deleteContent>
+                        <div class="style">
+                            <div class="modal-header">
+                                <h6 class="modal-title"
+                                    style="margin-left: 17%;">{{'CommonFormAll.Doyouwanttodelete' | translate}}</h6>
+
+                            </div>
+
+                            <div class="modal-footer" style="margin-right: 23%;">
+                                <button type="button" class="btn btn-danger" (click)="deletePop.close();"
+                                        data-dismiss="modal">No
+                                </button>
+                                <button type="button" class="btn btn-success"
+                                        (click)="deleteCurrency(currencylist.currencyId, deletePop)"
+                                        data-dismiss="modal">Yes
+                                </button>
+                            </div>
+                        </div>
+                    </ng-template>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <mat-paginator
+            [length]="(sandbox.currencyListCount$ | async)?.data"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="[pageSize]"
+            (page)="onPageChange($event)">
+    </mat-paginator>
+</div>
+
+
+
+

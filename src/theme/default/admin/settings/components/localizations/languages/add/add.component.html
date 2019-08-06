@@ -1,0 +1,111 @@
+<div class="settings-right-wrapper addnewuser">
+    <div class="flex setting-inner-header">
+        <h3 style="color:#FF006A">
+            {{updatetitle ? 'Update Language' : 'Add Language' | translate}}
+        </h3>
+    </div>
+    <!---->
+    <div class="new-user">
+        <form (ngSubmit)="onSubmit()" [formGroup]="language" class="form-horizontal m-t-20">
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.Local.Language.LanguageName' | translate}}<sup class="supvalidation">*</sup></label>
+                        <input type="text" formControlName="name" class="form-control" placeholder="Language Name"
+                               [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required">{{'Settings.Local.Language.Error.LanguageNameisrequired'
+                                | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.Local.Language.Code' | translate}}<sup class="supvalidation">*</sup></label>
+                        <input type="text" formControlName="code" class="form-control" placeholder="Code"
+                               [ngClass]="{ 'is-invalid': submitted && f.code.errors }"/>
+                        <div *ngIf="submitted && f.code.errors" class="invalid-feedback">
+                            <div *ngIf="f.code.errors.required">{{'Settings.Local.Language.Error.codeisrequired' |
+                                translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.Local.Language.SortOrder' | translate}}
+                            <sup class="supvalidation">*</sup></label>
+                        <select class="form-control custom-select" formControlName="sortorder"
+                                data-placeholder="Choose sortorder"
+                                [ngClass]="{ 'is-invalid': submitted && f.sortorder.errors }" placeholder="sort order">
+                            <option value=''>- -Select Sort Order- -</option>
+                            <option value="1">1</option>
+                            <option value="0">0</option>
+                        </select>
+                        <div *ngIf="submitted && f.sortorder.errors" class="invalid-feedback">
+                            <div *ngIf="f.sortorder.errors.required">
+                                {{'Settings.Local.Language.Error.SortOrderisrequired' | translate}}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-xs-12">
+
+
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.Local.Language.Status' | translate}}
+                            <sup class="supvalidation">*</sup></label>
+                        <select class="form-control custom-select" formControlName="status"
+                                data-placeholder="Choose Status"
+                                [ngClass]="{ 'is-invalid': submitted && f.status.errors }"
+                                placeholder="sort order">
+                            <option value=''>- -Select Status- -</option>
+                            <option value="1">{{'Settings.Local.Language.Enabled' | translate}}</option>
+                            <option value="0">{{'Settings.Local.Language.Disabled' | translate}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">{{'Settings.Local.Language.Error.Statusisrequired' |
+                                translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+
+                    <div class="form-group">
+                        <div class="image-col">
+                            <div class="img-dflt">
+                                <input type="file" name="userImg" (change)="uploadChange($event)" accept="image/*"
+                                       #filePath
+                                       style="display: none">
+                                <img [src]="postImageUrl" width="13%" height="13%">
+                                <p></p>
+                                <button (click)="uploadButtonClick()" type="button">
+                                    {{'Settings.Local.Language.UploadPic' | translate}}
+                                </button>
+                            </div>
+                            <span *ngIf='submitted' style="color:red">{{'shared.imagemanagerpopup.ImageRequired' | translate}}</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="flex user-btn">
+                        <button type="submit" class="btn btn-add">{{'Settings.Local.Save' | translate}}</button>
+                        <button class="btn btn-cancel" (click)="cancel()">{{'Settings.Local.Language.Cancel' |
+                            translate}}
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

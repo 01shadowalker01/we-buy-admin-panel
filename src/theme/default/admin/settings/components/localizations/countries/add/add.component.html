@@ -1,0 +1,93 @@
+<div class="settings-right-wrapper addnewuser">
+    <div class="flex setting-inner-header">
+        <h3 style="color:#FF006A">{{'Settings.Local.Country.AddCountry' | translate}}</h3>
+    </div>
+    <div class="new-user">
+        <form (ngSubmit)="onSubmit()" [formGroup]="countryForm" class="form-horizontal m-t-20">
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.Local.Country.CountryName' | translate}}<sup
+                                class="supvalidation">*</sup></label>
+                        <input type="text" formControlName="countryName" placeholder="Country Name"
+                               [ngClass]="{ 'is-invalid': submitted && f.countryName.errors }" class="form-control"/>
+                        <div *ngIf="submitted && f.countryName.errors" class="invalid-feedback">
+                            <div *ngIf="f.countryName.errors.required">{{'Settings.Local.Country.Error.CountryNameisrequired' | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.Local.Country.IsoCode-1' | translate}}<sup
+                                class="supvalidation">*</sup></label>
+                        <input type="text" formControlName="isocode1" placeholder="Iso Code - 1"
+                               [ngClass]="{ 'is-invalid': submitted && f.isocode1.errors }"
+                               class="form-control">
+                        <div *ngIf="submitted && f.isocode1.errors" class="invalid-feedback">
+                            <div *ngIf="f.isocode1.errors.required">Iso Code-1 is required</div>
+                            <div *ngIf="f.isocode1.errors">Iso Code-1 must be at max 2 characters</div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.Local.Country.IsoCode-2' | translate}}<sup
+                                class="supvalidation">*</sup></label>
+                        <input type="text" formControlName="isocode2" placeholder="Iso Code - 2"
+                               [ngClass]="{ 'is-invalid': submitted && f.isocode2.errors }"
+                               class="form-control"/>
+                        <div *ngIf="submitted && f.isocode2.errors" class="invalid-feedback">
+                            <div *ngIf="f.isocode2.errors.required">Iso Code-2 is required</div>
+                            <div *ngIf="f.isocode2.errors">Iso Code-2 must be at max 3 characters</div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.Local.Country.PostalCodeRequired' | translate}}<sup
+                                class="supvalidation">*</sup></label>
+                        <div class="radio">
+                            <mat-radio-group formControlName="postalcode" fxLayout="column" fxLayoutGap=".25rem">
+                                <mat-radio-button
+                                        [value]="'Yes'">{{'Settings.Local.Country.Yes' | translate}}</mat-radio-button>
+                                <mat-radio-button
+                                        [value]="'No'">{{'Settings.Local.Country.No' | translate}}</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.Local.Zone.Status' | translate}}<sup
+                                class="supvalidation">*</sup></label>
+                        <select class="form-control custom-select" formControlName="status"
+                                data-placeholder="Choose Role"
+                                [ngClass]="{ 'is-invalid': submitted && f.status.errors }"
+                                placeholder="status">
+                            <option value=''>- -Select Status- -</option>
+                            <option value='1'>{{'Settings.Local.Zone.Enabled' | translate}}</option>
+                            <option value='0'>{{'Settings.Local.Zone.Disabled' | translate}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">{{'Settings.Local.Zone.Error.Statusrequired' | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="flex user-btn">
+                        <button type="submit" class="btn btn-add">{{'Settings.Local.Save' | translate}}</button>
+                        <button (click)="countrycancel()"
+                                class="btn btn-cancel">{{'Settings.Local.Country.Cancel' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+

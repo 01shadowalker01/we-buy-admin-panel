@@ -1,0 +1,115 @@
+<div class="row products-section">
+    <div class="col-12">
+
+        <div class="breadcrumbs-row">
+
+            <div class="bc-col">
+                <ul>
+                    <li><a href="javascript:void(0)">{{'Customers.Customer.Customer'| translate}} </a></li>
+                    <li> {{'Customers.Customer.ViewCustomer'| translate}}</li>
+
+                </ul>
+
+            </div>
+
+            <div class="bc-col-btn">
+                <button class="btn" routerLink="/customers"><img src="assets/img/close-white-ico.png">{{'Customers.Customer.Cancel'|
+                    translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--Breadcrumbs-->
+</div>
+
+<div class="flex viewcustomer-wrap"
+     *ngIf="(sandbox.getDetailCustomer$ | async) as detail">
+
+    <div class="view-customer">
+        <div class="flex vc-header">
+            <div class="vch-detail">
+                <div class="vchd-image" *ngIf="detail && !detail.avatar">
+                    <img src="./assets/img/avatar-img1.png" width="13%" height="13%">
+                </div>
+                <div class="vchd-image" *ngIf="detail.avatar">
+                    <img [src]="imageUrl+'?width=60&height=60&path=' + detail.avatarPath + '&name='+ detail.avatar"
+                         class="avatar">
+                </div>
+                <div class="vchd-content">
+                    <h3>{{detail.firstName}}
+                        <!--<sup>#00304</sup> -->
+                    </h3>
+                    <p><span> <img src="./assets/img/group-ico-sm.png"> </span> Group(Default) </p>
+                    <p class="d-inline-block"><span> <img src="assets/img/mail-ico-sm.png"> </span> {{detail.email}}</p>
+                    <p class="d-inline-block"><span> <img
+                            src="assets/img/mobile-ico-sm.png"> </span> {{detail.mobileNumber}}</p>
+                    <p><span> <img src="assets/img/addr-ico-sm.png"> </span> {{detail.address}} </p>
+                </div>
+            </div>
+            <!--Detail-->
+            <div class="vch-social">
+            </div>
+            <!--Social-->
+        </div>
+        <!--Header-->
+
+        <div class="customer-activity">
+
+            <article>
+
+                <!--<p> <span> Today </span> </p>-->
+
+                <h5> Last Login Activity </h5>
+
+                <div class="lastlog"> {{detail.lastLogin | date:'MMM d, y, h:mm:ss a'}}</div>
+
+                <!--<h5 class="logout"> Last Logout Activity </h5>-->
+
+                <!--<div class="lastlog llogout"> Dec 07 2018, 02:53 PM </div>-->
+
+            </article>
+
+            <!--<article class="yesterday">-->
+
+            <!--<p> <span> Yesterday </span> </p>-->
+
+            <!--<h5 class="ylastlog"> Last Login Activity </h5>-->
+
+            <!--<div class="lastlog"> Dec 07 2018, 02:33 PM </div>-->
+
+            <!--<h5 class="logout ylogout"> Last Logout Activity </h5>-->
+
+            <!--<div class="lastlog llogout"> Dec 07 2018, 02:53 PM </div>-->
+
+            <!--</article>-->
+
+        </div>
+        <!---->
+
+    </div>
+    <!--Left-->
+
+    <div class="buying-history"
+         *ngIf="(sandbox.getDetailCustomer$ | async) as detail">
+
+
+        <h4>{{'Customers.Customer.BuyingHistory'| translate}} <span
+                *ngIf="detail && detail.productList[0]">{{detail.productList[0].length}}</span></h4>
+        <ul>
+            <li class="flex" *ngFor="let productdetail of detail.productList[0]">
+                <div class="lcimg" style="border-radius: 20%" *ngIf="productdetail.productDetails">
+                    <img [src]="imageUrl+'?width=60&height=60&path=' + productdetail.productDetails[0].productImages.containerName + '&name='+ productdetail.productDetails[0].productImages.image">
+                </div>
+                <div class="bh-content">
+                    <h5>{{productdetail.name}} </h5>
+                    <p> Order Date :{{productdetail.createdDate | date:'MMM d, y, h:mm:ss a'}} </p>
+                    <p> Price : {{productdetail.productDetails[0].price| currency :'INR':'symbol-narrow'}} </p>
+                </div>
+                <h3></h3>
+            </li>
+        </ul>
+
+    </div>
+    <!--Right-->
+</div>
+

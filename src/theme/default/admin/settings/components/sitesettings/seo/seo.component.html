@@ -1,0 +1,48 @@
+<div class="settings-right-wrapper addnewuser">
+    <div class="flex setting-inner-header">
+        <h3> {{'Settings.Common.Settings' | translate}} >{{'Settings.SiteSettings.SiteSettings' | translate}} >
+            {{'Settings.SiteSettings.SEO' | translate}}</h3>
+
+    </div>
+    <div class="new-user">
+        <!--<h3>{{'Settings.SiteSettings.SEO' | translate}}</h3>-->
+        <form (ngSubmit)="onSubmit()" [formGroup]="seoForm" class="form-horizontal m-t-20">
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.SiteSettings.MetaTitle' | translate}}
+                            </label>
+                        <input type="text" formControlName="MetaTitle" class="form-control"
+                        >
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.SiteSettings.MetaTagDescription' | translate}}
+                                </label>
+                        <input type="text" formControlName="MetaTagDescription" class="form-control"
+                        >
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.SiteSettings.MetatagKeyword' | translate}}</label>
+                        <input type="text" formControlName="MetatagKeyword" class="form-control"
+                        >
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="flex user-btn">`
+                        <button type="submit" class="btn btn-add">{{'Settings.SiteSettings.Save' | translate}}</button>
+                        <button (click)="seoCancel()"
+                                class="btn btn-cancel">{{'Settings.SiteSettings.Cancel' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

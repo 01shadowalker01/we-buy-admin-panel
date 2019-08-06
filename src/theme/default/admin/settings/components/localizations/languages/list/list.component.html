@@ -1,0 +1,67 @@
+<div class="settings-right-wrapper">
+    <div class="flex setting-inner-header">
+        <h3>{{'Settings.Local.Language.LanguagesList' | translate}}</h3>
+        <button class="btn" (click)="addLanguage()"><img
+                src="assets/img/add-white-ico.png">{{'Settings.Local.Language.AddNewLanguage' | translate}}</button>
+    </div>
+
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="text-center" scope="col">{{'Settings.Local.Language.LanguageName' | translate}}</th>
+                <th scope="col">{{'Settings.Local.Language.Code' | translate}}</th>
+                <th scope="col">{{'Settings.Local.Language.SortOrder' | translate}}</th>
+                <th scope="col">{{'Settings.Local.Emailtemplate.Status' | translate}}</th>
+                <th scope="col">{{'Settings.Local.Language.Action' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let languagelist of languageSandbox.getlanguagelist$ | async;">
+                <td class="text-center" scope="row">{{languagelist.name}}</td>
+                <td>{{languagelist.code}}</td>
+                <td>{{languagelist.sortOrder}}</td>
+                <td>
+                    <div *ngIf="languagelist.isActive === 1">{{'Settings.Local.StockStatus.Active' | translate}}</div>
+                    <div *ngIf="languagelist.isActive === 0">{{'Settings.Local.StockStatus.InActive' | translate}}</div>
+                </td>
+                <td><i class="fas fa-edit" (click)="editLanguage(languagelist)"></i>
+                    <i style="margin-left: 15px;" [ngbPopover]="deleteContent" placement="bottom"
+                       #deletePop="ngbPopover" class="fas fa-trash"></i>
+                    <ng-template #deleteContent>
+                        <div class="style">
+                            <div class="modal-header">
+                                <h6 class="modal-title" style="margin-left: 17%;"> Do you want to delete ?</h6>
+
+                            </div>
+
+                            <div class="modal-footer" style="margin-right: 23%;">
+                                <button type="button" class="btn btn-danger" (click)="deletePop.close()"
+                                        data-dismiss="modal">No
+                                </button>
+                                <button type="button" class="btn btn-success"
+                                        (click)="deleteLanguage(languagelist.languageId, deletePop)"
+                                        data-dismiss="modal">Yes
+                                </button>
+                            </div>
+                        </div>
+                    </ng-template>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<mat-paginator
+        [length]="languageSandbox.getlanguagePageLength$ | async"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[pageSize]"
+        (page)="onPageChange($event)">
+</mat-paginator>
+
+
+
+
+
+

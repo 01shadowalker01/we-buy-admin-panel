@@ -1,0 +1,109 @@
+<div class="settings-right-wrapper addnewuser">
+    <div class="flex setting-inner-header">
+        <h3> {{updatetitle ? 'Update User' : 'Add  User'}} </h3>
+        <!--<h3>{{'Settings.User.AddUser' | translate}}</h3>-->
+    </div>
+    <!---->
+    <div class="new-user">
+        <form (ngSubmit)="onSubmit(user.value)" [formGroup]="user" class="form-horizontal m-t-20">
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.User.FirstName' | translate}}<sup class="supvalidation">*</sup></label>
+                        <input type="text" [(ngModel)]="firstName" formControlName="firstName" class="form-control" placeholder="First Name"
+                               [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"/>
+                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="f.firstName.errors.required">{{'Settings.User.Error.FirstNameisrequired' |
+                                translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.User.LastName' | translate}}<sup class="supvalidation">*</sup></label>
+                        <input type="text" [(ngModel)]="lastName" formControlName="lastName" class="form-control" placeholder="Last Name"
+                               [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"/>
+                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                            <div *ngIf="f.lastName.errors.required">{{'Settings.User.Error.LastNameisrequired' |
+                                translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.User.Email' | translate}}<sup class="supvalidation">*</sup></label>
+                        <input type="email" [(ngModel)]="email" formControlName="email" class="form-control" placeholder="Email"
+                               [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">{{'Settings.User.Error.Emailisrequired' | translate}}
+                            </div>
+                            <div *ngIf="f.email.errors">{{'Settings.User.Error.Emailmustbeavalidemailaddress' |
+                                translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.User.Role' | translate}}<sup class="supvalidation">*</sup></label>
+                        <select [(ngModel)]="role" class="form-control custom-select" data-placeholder="Choose Role"
+                                [ngClass]="{ 'is-invalid': submitted && f.role.errors }"
+                                formControlName="role" placeholder="Role">
+                            <option [ngValue]="undefined" selected>- -Select- -</option>
+                            <option *ngFor="let rolelist of sandbox.getGroupRoleList$ | async"
+                                    value={{rolelist.groupId}}>
+                                {{rolelist.name}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">{{'Settings.User.Error.Roleisrequired' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.User.UserName' | translate}}<sup class="supvalidation">*</sup></label>
+                        <input type="email" [(ngModel)]="username" formControlName="username" class="form-control" placeholder="User Name"
+                               [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">{{'Settings.User.Error.UserNameEmailisrequired' |
+                                translate}}
+                            </div>
+                            <div *ngIf="f.username.errors">{{'Settings.User.Error.UserNameEmailmustbeavalidemailaddress'
+                                | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.User.Password' | translate}}<sup class="supvalidation">*</sup></label>
+                        <input type="password" [(ngModel)]="password" formControlName="password" class="form-control" placeholder="Password"
+                               [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">{{'Settings.User.Error.Passwordisrequired' |
+                                translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="flex user-btn">
+                        <button type="submit" class="btn btn-add">{{updatetitle ? 'Update User' : 'Save' |
+                            translate}}
+                        </button>
+                        <button (click)="UserCancle()" class="btn btn-cancel">{{'Settings.User.Cancle' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

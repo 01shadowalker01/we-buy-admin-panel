@@ -1,0 +1,75 @@
+<div class="settings-right-wrapper addnewuser">
+    <div class="flex setting-inner-header">
+        <h3 style="color:#FF006A">{{updatetitle ? 'Update Zone' : 'Add Zone' | translate}}</h3>
+    </div>
+    <div class="new-user">
+        <form (ngSubmit)="onSubmit()" [formGroup]="zoneForm" class="form-horizontal m-t-20">
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.Local.Zone.ZoneName' | translate}}<sup class="supvalidation">*</sup></label>
+                        <input type="text" formControlName="zonename" placeholder="Zone Name"
+                               [ngClass]="{ 'is-invalid': submitted && f.zonename.errors }"
+                               class="form-control"/>
+                        <div *ngIf="submitted && f.zonename.errors" class="invalid-feedback">
+                            <div *ngIf="f.zonename.errors.required">{{'Settings.Local.Zone.Error.ZoneNameisrequired' | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.Local.Zone.ZoneCode' | translate}}<sup class="supvalidation">*</sup></label>
+                        <input type="text" formControlName="zonecode" placeholder="Zone Code"
+                               [ngClass]="{ 'is-invalid': submitted && f.zonecode.errors }"
+                               class="form-control" class="form-control">
+                        <div *ngIf="submitted && f.zonecode.errors" class="invalid-feedback">
+                            <div *ngIf="f.zonecode.errors.required">{{'Settings.Local.Zone.Error.ZoneCodeisrequired' | translate}}</div>
+                            <div *ngIf="f.zonecode.errors">{{'Settings.Local.Zone.Error.ZoneCodemustbeatmax30characters' | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.Local.Zone.Country' | translate}}<sup class="supvalidation">*</sup></label>
+
+                        <ngx-select-dropdown (change)="selectionChanged($event)" formControlName="country"
+                                             [config]="config" [options]="countrysandbox.getcountries$ | async"
+                                             [multiple]="false"
+                                             [ngClass]="{ 'is-invalid': submitted && f.country.errors }"></ngx-select-dropdown>
+                        <div style="color: #f62d51;font-size: 80%"
+                             *ngIf="countryvalid">{{'Settings.Local.Zone.Error.Countryisrequired' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.Local.Zone.Status' | translate}}<sup class="supvalidation">*</sup></label>
+                        <select class="form-control custom-select" formControlName="status"
+                                data-placeholder="Choose Role"
+                                [ngClass]="{ 'is-invalid': submitted && f.status.errors }"
+                                placeholder="status">
+                            <option value=''>- -Select Status- -</option>
+                            <option value=1>{{'Settings.Local.Zone.Enabled' | translate}}</option>
+                            <option value=0>{{'Settings.Local.Zone.Disabled' | translate}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">{{'Settings.Local.Zone.Error.Statusrequired' | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="flex user-btn">
+                        <button type="submit" class="btn btn-add">{{'Settings.Local.Save' | translate}}</button>
+                        <button (click)="zonecancel()"
+                                class="btn btn-cancel"> {{'Settings.Local.Zone.Cancel' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+

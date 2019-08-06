@@ -1,0 +1,61 @@
+<div class="settings-right-wrapper addnewuser">
+    <div class="flex setting-inner-header">
+        <h3 style="color:#FF006A">{{editedStockValue ? 'Update Stock Status' : 'Add Stock Status' | translate}}</h3>
+    </div>
+    <div class="new-user">
+        <form [formGroup]="stockStatusform" class="form-horizontal m-t-20">
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.Local.StockStatus.StockStatusName' | translate}}<sup
+                                class="supvalidation">*</sup></label>
+                        <input type="text"
+                               formControlName="name" placeholder="Stock Status Name"
+                               class="form-control"
+                               [ngClass]="{'validationcolor':stockStatusform.get('name').hasError('required') && stockStatusform.get('name').touched && submitted}"/>
+                        <div class="error"
+                             *ngIf="stockStatusform.get('name').hasError('required') && stockStatusform.get('name').touched && submitted">
+                            {{'Settings.Local.StockStatus.Error.Nameisrequired' | translate}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.Local.StockStatus.Status' | translate}}<sup
+                                class="supvalidation">*</sup></label>
+                        <select class="form-control custom-select"
+                                formControlName="status"
+                                [ngClass]="{'validationcolor':!stockStatusform.get('status').valid && !stockStatusform.get('status').untouched && submitted}"
+                                data-placeholder="Choose Role"
+                                placeholder="status">
+                            <!--<option [ngValue]="null">Choose...</option>-->
+                            <option value=''>- -Select Status- -</option>
+                            <option value="1">{{'Settings.Local.StockStatus.Enabled' | translate}}</option>
+                            <option value="0">{{'Settings.Local.StockStatus.Disabled' | translate}}</option>
+                        </select>
+
+                    </div>
+                    <div class="error"
+                         *ngIf="stockStatusform.get('status').hasError('required') && stockStatusform.get('status').touched && submitted">
+                        {{'Settings.Local.StockStatus.Error.Statusisrequired' | translate}}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="flex user-btn">
+                        <button type="submit" (click)='onSubmit()'
+                                class="btn btn-add">{{'Settings.Local.StockStatus.Save' | translate}}
+                        </button>
+                        <button (click)="cancel()"
+                                class="btn btn-cancel"> {{'Settings.Local.StockStatus.Cancel' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+

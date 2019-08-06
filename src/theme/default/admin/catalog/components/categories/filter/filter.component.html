@@ -1,0 +1,23 @@
+<form [formGroup]="filterForm">
+    <div class="form-group">
+        <label> {{'catalog.categories.CategoryName'| translate}}</label>
+        <select class="custom-select col-12" id="inlineFormCustomSelect" formControlName="categoryNameList">
+            <option selected>Select</option>
+            <option *ngFor="let val of categoryListArray">{{val.name}}</option>
+
+        </select>
+    </div>
+    <div class="form-group get">
+        <label>{{'catalog.categories.SortOrder'| translate}}</label>
+        <select class="custom-select col-12" id="" formControlName="sortOrder">
+            <option value=''>--Select--</option>
+            <option value="1">Ascending</option>
+            <option value="2">Descending</option>
+        </select>
+
+    </div>
+    <div class="text-right filter-btns">
+        <a href="javascript:void(0)" (click)="reset()">{{'catalog.product.Reset'| translate}}</a>
+        <button type="submit" (click)="filter()" class="btn">{{'catalog.product.ApplyFilters'| translate}}</button>
+    </div>
+</form>

@@ -1,0 +1,193 @@
+<div class="row products-section">
+    <div class="col-12">
+        <div class="breadcrumbs-row noborder">
+            <div class="bc-col">
+                <ul>
+                    <li><a href="javascript:void(0)">{{'Customers.Customer.Customers'| translate}} </a></li>
+                    <li>{{'Customers.Customer.AddCustomer'| translate}} </li>
+                </ul>
+            </div>
+            <div class="bc-col-btn ap-col-btn">
+                <button class="btn btn-save" (click)="onSubmit()"><img
+                        src="assets/img/tick-round-white.png"> {{'Customers.Customer.Save'| translate}} </button>
+                <button (click)="addCustCancle()" class="btn btn-cancel"><img
+                        src="assets/img/close-white-ico.png"> {{'Customers.Customer.Cancel'| translate}} </button>
+            </div>
+        </div>
+    </div>
+    <!--Breadcrumbs-->
+</div>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="customerForm" class="form-horizontal m-t-20">
+    <div class="flex addproduct-wrap">
+
+        <div class="card ap-general">
+            <div class="ap-header">
+                <span> 1 </span>{{'Customers.Customer.CustomerDetails'| translate}}
+            </div>
+
+            <div class="flex ap-body">
+
+                <div class="ap-body-col">
+
+
+                    <div class="form-group">
+                        <label>{{'Customers.Customer.CustomerGroup'| translate}}<sup>*</sup></label>
+                        <select class="custom-select col-12" [(ngModel)]="customerGroup"
+                                [ngClass]="{ 'is-invalid': submitted && f.customerGroup.errors }"
+                                formControlName="customerGroup">
+                            <option [ngValue]="undefined" selected>- -Select Customer Group- -</option>
+                            <option value=1>Default</option>
+                        </select>
+                        <div *ngIf="submitted && f.customerGroup.errors" class="invalid-feedback">
+                            <div *ngIf="f.customerGroup.errors.required">{{'Customers.Error.CustomerGroupIsRequired'| translate}}</div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--Col-->
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>{{'Sales.Orders.CustomerName'| translate}} <sup>*</sup> </label>
+                        <input type="text" [(ngModel)]="customerName" class="form-control"
+                               formControlName="customerName"
+                               [ngClass]="{ 'is-invalid': submitted && f.customerName.errors }"
+                               placeholder="{{'Customers.CustomerPlaceholder.CustomerName'| translate}}">
+                        <div *ngIf="submitted && f.customerName.errors" class="invalid-feedback">
+                            <div *ngIf="f.customerName.errors.required">{{'Customers.Error.CustomerNameIsRequired'| translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <!--Col-->
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>{{'Customers.Customer.Email'| translate}} <sup>*</sup></label>
+                        <input type="email" [(ngModel)]="email" class="form-control" formControlName="email"
+                               placeholder="{{'Customers.CustomerPlaceholder.Email'| translate}}"
+                               [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">{{'Customers.Error.EmailIsRequired'| translate}} </div>
+                            <div *ngIf="f.email.errors">{{'Customers.Error.EmailMustBeAValidEmailAddress'| translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <!--Col-->
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>{{'Customers.Customer.Telephone'| translate}} <sup>*</sup></label>
+                        <input type="text" class="form-control" [(ngModel)]="telephone" formControlName="telephone"
+                               appOnlyNumber maxlength="15"
+                               placeholder="{{'Customers.CustomerPlaceholder.Telephone'| translate}}"
+                               [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }">
+                        <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
+                            <div *ngIf="f.telephone.errors.required">{{'Customers.Error.TelephoneIsRequired'| translate}}</div>
+                            <div *ngIf="f.telephone.errors">{{'Customers.Error.Telephoneallownumbersonly'| translate}} </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--Col-->
+
+            </div>
+        </div>
+        <!--General-->
+
+        <div class="card ap-general ap-info">
+            <div class="ap-header">
+                <span> 2 </span>{{'Customers.Customer.MoreInformation'| translate}}
+            </div>
+            <div class="flex ap-body">
+                <ngb-tabset style="width:100%;">
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>{{'Customers.Customer.General'| translate}}</ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="flex data-row">
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'Customers.Customer.Password'| translate}}<sup>*</sup></label>
+                                        <input type="password" class="form-control"
+                                               [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                                               formControlName="password"
+                                               placeholder="{{'Customers.CustomerPlaceholder.Password'| translate}}">
+                                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                            <div *ngIf="f.password.errors.required">{{'Customers.Error.passwordIsRequired'| translate}} </div>
+                                        </div>
+
+                                    </div>
+                                    <!---->
+
+                                </div>
+                                <!--Col-->
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'Customers.Customer.ConfirmPassword'| translate}}<sup>*</sup></label>
+                                        <input type="password" class="form-control"
+                                               [ngClass]="{ 'is-invalid': submitted && f.confirmpassword.errors }"
+                                               formControlName="confirmpassword"
+                                               placeholder="{{'Customers.Customer.ConfirmPassword'| translate}}">
+                                        <div *ngIf="submitted && f.confirmpassword.errors" class="invalid-feedback">
+                                            <!--<div *ngIf="f.confirmpassword.errors.required">confirmpassword is required</div>-->
+                                            <div *ngIf="f.confirmpassword.errors.mismatchedPasswords">{{'Customers.Error.ConfirmpasswordIsMismatch'| translate}} </div>
+                                        </div>
+
+                                    </div>
+                                    <!---->
+                                </div>
+                                <!--Col-->
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'Customers.Customer.Newsletter'| translate}}</label>
+                                        <select class="custom-select col-12" [(ngModel)]="newsletter"
+                                                formControlName="newsletter">
+                                            <option [ngValue]="undefined" selected>- -Select Newsletter- -</option>
+                                            <option value="1">{{'Customers.Customer.Enabled'| translate}}</option>
+                                            <option value="0">{{'Customers.Customer.Disabled'| translate}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--Col-->
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'Customers.Customer.Status'| translate}}<sup>*</sup></label>
+                                        <select class="custom-select col-12" [(ngModel)]="status"
+                                                [ngClass]="{ 'is-invalid': submitted && f.status.errors }"
+                                                formControlName="status">
+                                            <option  value="" selected>- -Select Status- -</option>
+                                            <option value= 1 >Enabled</option>
+                                            <option value= 0>Disabled</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                                            <div *ngIf="f.status.errors.required"> {{'Customers.Error.StatusIsRequired'| translate}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Col-->
+                                <div class="data-col">
+                                    <div class="form-group" style="margin-left: 11px">
+                                        <label>{{'Customers.Customer.MailStatus'| translate}}<sup>*</sup></label>
+                                        <mat-checkbox  
+                                          [ngClass]="{ 'is-invalid': submitted && f.mailStatus.errors}" 
+                                          [(ngModel)]='myValue'
+                                          formControlName="mailStatus"
+                                         >
+                                        </mat-checkbox>
+                                        <div *ngIf="submitted && f.mailStatus.errors" class="invalid-feedback">
+                                            <div *ngIf="f.mailStatus.errors.required"> {{'Customers.Error.MailstatusIsRequired'| translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!--Col-->
+                            </div>
+
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </div>
+        </div>
+
+    </div>
+</form>
+

@@ -1,0 +1,45 @@
+<div class="settings-right-wrapper">
+
+    <div class="flex setting-inner-header">
+        <h3>{{'Settings.Role.RoleList' | translate}}</h3>
+        <!--<h3> Role List </h3>-->
+        <button class="btn" (click)="addNewrole()"><img src="assets/img/add-white-ico.png">{{'Settings.Role.AddNewRole'
+            | translate}}
+        </button>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">{{'Settings.Role.Name' | translate}}</th>
+                <th scope="col">{{'Settings.Role.Status' | translate}}</th>
+                <th scope="col">{{'Settings.Role.Action' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let Rolelist of appSandbox.getRolesList$ | async; let i=index">
+                <td>{{Rolelist.name}}</td>
+                <td>
+                    <div *ngIf="Rolelist.isActive === 1">{{'Settings.Role.Active' | translate}}</div>
+                    <div *ngIf="Rolelist.isActive === 0">{{'Settings.Role.InActive' | translate}}</div>
+                </td>
+                <td><i (click)="editRole(Rolelist)" class="fas fa-edit"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<mat-paginator
+        [length]="appSandbox.roleCount$ | async"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[[pageSize]]"
+        (page)="onPageChange($event)">
+</mat-paginator>
+
+
+
+
+
+

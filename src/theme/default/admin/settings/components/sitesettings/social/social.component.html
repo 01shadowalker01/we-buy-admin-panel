@@ -1,0 +1,53 @@
+<div class="settings-right-wrapper addnewuser">
+    <div class="flex setting-inner-header">
+        <h3> {{'Settings.Common.Settings' | translate}} >{{'Settings.SiteSettings.SiteSettings' | translate}} >{{'Settings.Social.Social' | translate}}  </h3>
+
+    </div>
+    <div class="new-user">
+        <!--<h3>{{'Settings.Social.Social'| translate}}</h3>-->
+        <form (ngSubmit)="onSubmit()" [formGroup]="socialForm" class="form-horizontal m-t-20">
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.Social.Facebook' | translate}}</label>
+                        <input type="text" placeholder="{{'Settings.Social.Facebook'| translate}}"
+                               formControlName="Facebook"
+                               class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.Social.Google'| translate}}</label>
+                        <input type="text" formControlName="Google" class="form-control"
+                               placeholder="{{'Settings.Social.GoogleLink' | translate}}">
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.Social.Twitter' | translate}}</label>
+                        <input type="text" class="form-control" formControlName="Twitter"
+                               placeholder="{{'Settings.Social.TwitterLink' | translate}}">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.Social.Instagram' | translate}}</label>
+                        <input type="text" class="form-control" formControlName="Instagram"
+                               placeholder="{{'Settings.Social.Instagram'| translate}}">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="flex user-btn">`
+                        <button type="submit" class="btn btn-add">{{'Settings.Social.Save' | translate}}</button>
+                        <button (click)="socialcancel()"
+                                class="btn btn-cancel">{{'Settings.Social.Cancel' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

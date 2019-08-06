@@ -1,0 +1,76 @@
+<div class="settings-right-wrapper">
+    <div class="flex setting-inner-header">
+        <h3>{{'Settings.Local.Zone.ZoneList' | translate}}</h3>
+        <button (click)=" AddeNewZone()" class="btn"><img
+                src="assets/img/add-white-ico.png">{{'Settings.Local.Zone.AddNewZone' | translate}}</button>
+    </div>
+
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="text-center" scope="col">{{'Settings.Local.Zone.Country' | translate}}</th>
+                <th scope="col">{{'Settings.Local.Zone.ZoneName' | translate}}</th>
+                <th scope="col">{{'Settings.Local.Zone.ZoneCode' | translate}}</th>
+                <th scope="col">{{'Settings.Local.Emailtemplate.Status' | translate}}</th>
+                <th scope="col">{{'Settings.Local.Zone.Action' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let zonelist of zoneSandbox.getzoneslist$ | async; let i=index">
+                <td class="text-center" scope="row">{{zonelist.country.name}}</td>
+                <td>{{zonelist.name}}</td>
+                <td>{{zonelist.code}}</td>
+                <td>
+                    <div *ngIf="zonelist.isActive === 1">{{'Settings.Local.StockStatus.Active' | translate}}</div>
+                    <div *ngIf="zonelist.isActive === 0">{{'Settings.Local.StockStatus.InActive' | translate}}</div>
+                </td>
+                <td><i (click)="editzone(zonelist)" class="fas fa-edit"></i> <i [ngbPopover]="deleteContent"
+                                                                                placement="bottom"
+                                                                                #deletePop="ngbPopover"
+                                                                                style="margin-left: 15px;"
+                                                                                class="fas fa-trash"></i>
+                    <ng-template #deleteContent>
+                        <div class="style">
+                            <div class="modal-header">
+                                <h6 class="modal-title" style="margin-left: 17%;"> Do you want to delete ?</h6>
+
+                            </div>
+
+                            <div class="modal-footer" style="margin-right: 23%;">
+                                <button type="button" class="btn btn-danger" (click)="deletePop.close();"
+                                        data-dismiss="modal">No
+                                </button>
+                                <button type="button" class="btn btn-success"
+                                        (click)="deleteZone(zonelist.zoneId, deletePop)"
+                                        data-dismiss="modal">Yes
+                                </button>
+                            </div>
+                        </div>
+                    </ng-template>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+    <mat-paginator
+            [length]="zoneSandbox.getzonepagelength$ | async"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="[pageSize]"
+            (page)="onPageChange($event)">
+    </mat-paginator>
+</div>
+
+
+
+
+
+
+
+
+
+
+

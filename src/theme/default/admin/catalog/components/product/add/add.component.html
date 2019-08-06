@@ -1,0 +1,712 @@
+<br xmlns="http://www.w3.org/1999/html">
+<br>
+<br>
+<!--REACTIVE FORM-->
+<form novalidate [formGroup]="user">
+    <div class="col-12">
+        <div class="breadcrumbs-row noborder">
+            <div class="bc-col">
+                <ul>
+                    <li><a href="javascript:void(0)"> {{'catalog.product.Catalog'| translate}} </a></li>
+                    <li> {{'catalog.product.AddProduct'| translate}}</li>
+                </ul>
+            </div>
+            <div class="bc-col-btn ap-col-btn">
+                <button class="btn btn-save" (click)="onSubmit(user.value)"><img src="assets/img/tick-round-white.png">
+                    {{'catalog.product.Save'| translate}}
+                </button>
+                <button class="btn btn-cancel" [routerLink]="['/catalog/product']"><img
+                        src="assets/img/close-white-ico.png">
+                    {{'catalog.product.Cancel'| translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--Breadcrumbs-->
+    <div class="flex addproduct-wrap">
+        <div class="card ap-general">
+            <div class="ap-header">
+                <span> 1 </span>{{'catalog.product.General'| translate}}
+            </div>
+            <div class="flex ap-body">
+
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>{{'catalog.product.ProductsName'| translate}} <sup>*</sup></label>
+                        <input type="text" class="form-control"
+                               placeholder="{{'catalog.product.ProductsName'| translate}}" formControlName="productName"
+                               [ngClass]="{'validationcolor':user.get('productName').hasError('required') && user.get('productName').touched&&submittedValues==true}">
+
+                        <div class="error"
+                             *ngIf="user.get('productName').hasError('required') && user.get('productName').touched&&submittedValues==true">
+                            {{'catalog.Error.ProductNameRequired'| translate}}
+                        </div>
+
+                    </div>
+                </div>
+                <!--Col-->
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label> {{'catalog.product.Sku'| translate}}<sup>*</sup></label>
+                        <input type="text" class="form-control" placeholder="{{'catalog.product.SkuNumber'| translate}}"
+                               formControlName="sku"
+                               [ngClass]="{'validationcolor':user.get('sku').hasError('required') && user.get('sku').touched&&submittedValues==true}">
+
+                        <div class="error"
+                             *ngIf="user.get('sku').hasError('required') && user.get('sku').touched&&submittedValues==true">
+                            {{'catalog.Error.skuRequired'| translate}}
+                        </div>
+
+                    </div>
+                </div>
+                <!--Col-->
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>{{'catalog.product.MetaTagTitle'| translate}}</label>
+                        <input type="text" class="form-control"
+                               placeholder="{{'catalog.product.MetaTagTitle'| translate}}"
+                               formControlName="metaTagTitle">
+
+
+                    </div>
+                </div>
+                <!--Col-->
+
+
+                <div class="ap-body-col width100">
+                    <div class="form-group">
+                        <label>{{'catalog.product.ProductsDescriptions'| translate}}</label>
+                        <ckeditor formControlName="productDescription">
+                        </ckeditor>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!--General-->
+
+        <div class="card ap-general ap-info">
+            <div class="ap-header">
+                <span> 2 </span>{{'catalog.product.MoreInformation'| translate}}
+            </div>
+            <div class="flex ap-body">
+                <ngb-tabset style="width:100%;">
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>{{'catalog.product.Categories'| translate}}</ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="flex categories-row">
+                                <div class="categories-col">
+                                    <h3>{{'catalog.product.AvailableCategories'| translate}}</h3>
+                                    <div class="form-group search-categories">
+
+                                        <form class="example-form">
+                                            <mat-form-field class="example-full-width" style="    width: 100%;">
+                                                <input type="text" placeholder="" (keyup)="searchCategory($event)"
+                                                       matInput>
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+
+                                    <ul class="flex category-list over-flowx">
+
+                                        <li *ngFor="let arr of categoriessandbox.getCategoriesList$ | async ;let i=index"
+                                            (click)="selectCategory(arr,i)"
+                                            style="cursor: pointer">
+                                            <a href="javascript:void(0)"><img src="assets/img/add-green-ico.png">
+                                            </a>
+                                            {{arr.name}}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!---->
+                                <div class="categories-col">
+                                    <h3>{{'catalog.product.SelectedCategories'| translate}}</h3>
+                                    <div class="form-group search-categories">
+
+                                        <form class="example-form">
+                                            <mat-form-field class="example-full-width" style="    width: 100%;">
+                                                <input type="text" placeholder="" aria-label="Assignee" matInput
+                                                       (keyup)="searchSelectedCategory($event.target.value)">
+                                            </mat-form-field>
+                                        </form>
+
+
+                                        <ul class="flex category-list over-flowx" *ngIf="editId"
+                                            style="cursor: pointer">
+                                            <span>  <li *ngFor="let data of selectedCategories;let i=index"
+                                                        (click)="removeCategory(data,i)"><a
+                                                    href="javascript:void(0)"> <img
+                                                    src="assets/img/minus-red-ico.png"> </a> {{data.categoryName}}</li></span>
+
+                                        </ul>
+                                        <ul class="flex category-list " *ngIf="!editId && show!=true"
+                                            style="cursor: pointer">
+                                            <span> <li *ngFor="let selected of selectedCategories;let i=index"
+                                                       (click)="removeCategory(selected,i)"><a
+                                                    href="javascript:void(0)"> <img
+                                                    src="assets/img/minus-red-ico.png"> </a> {{selected.name}}</li></span>
+
+                                        </ul>
+                                        <ul class="flex category-list " *ngIf="!editId && show==true"
+                                            style="cursor: pointer">
+                                           <span><li *ngFor="let selected of filteredArray;let i=index"
+                                                     (click)="removeCategory(selected,i)"><a
+                                                   href="javascript:void(0)"> <img
+                                                   src="assets/img/minus-red-ico.png"> </a> {{selected.name}}</li></span>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle> {{'catalog.product.Data'| translate}}</ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="flex data-row">
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'catalog.product.Model'| translate}} <sup>*</sup></label>
+                                        <select class="custom-select col-12"
+                                                formControlName="model"
+                                                [ngClass]="{'validationcolor':user.get('model').hasError('required') && user.get('model').touched&&submittedValues==true}">
+                                            <option value=''>- -Select Model- -</option>
+                                            <option *ngFor="let arr of brandsandbox.getManufactureList$|async"
+                                                    value={{arr.manufacturerId}}>{{arr.name}}
+                                            </option>
+                                        </select>
+
+                                        <div class="error"
+                                             *ngIf="user.get('model').hasError('required') && user.get('model').touched&&submittedValues==true">
+                                            {{'catalog.Error.ModelRequired'| translate}}
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <!--Col-->
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'catalog.product.Upc'| translate}}
+
+                                        </label>
+                                        <input type="text" class="form-control"
+                                               placeholder="{{'catalog.product.Upc'| translate}}" formControlName="upc">
+
+
+                                    </div>
+                                </div>
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'catalog.product.Location'| translate}}</label>
+                                        <input type="text" class="form-control" placeholder="Location"
+                                               formControlName="location">
+
+                                    </div>
+                                </div>
+                                <!--Col-->
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'catalog.product.Price'| translate}} <sup>*</sup></label>
+                                        <input type="text" class="form-control"
+                                               placeholder="{{'catalog.product.Price'| translate}}"
+                                               formControlName="price"
+
+
+                                               [ngClass]="{'validationcolor':user.get('price').hasError('required') && user.get('price').touched&&submittedValues==true}">
+
+                                        <div class="error"
+                                             *ngIf="user.get('price').hasError('required') && user.get('price').touched&&submittedValues==true">
+                                            {{'catalog.Error.PriceRequired'| translate}}
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'catalog.product.Quantity'| translate}} <sup>*</sup></label>
+                                        <input type="text" class="form-control"
+                                               placeholder="{{'catalog.product.Quantity'| translate}}"
+                                               formControlName="quantity"
+
+                                               [ngClass]="{'validationcolor':user.get('quantity').hasError('required') && user.get('quantity').touched&&submittedValues==true}">
+
+                                        <div class="error"
+                                             *ngIf="user.get('quantity').hasError('required') && user.get('quantity').touched&&submittedValues==true">
+                                            {{'catalog.Error.QuantityRequired'| translate}}
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <!--Col-->
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'catalog.product.MinimumQuantity'| translate}}
+
+                                        </label>
+                                        <input type="text" class="form-control"
+                                               placeholder="{{'catalog.product.MinimumQuantity'| translate}}"
+                                               formControlName="minimumQuantity">
+
+
+                                    </div>
+                                </div>
+                                <!--Col-->
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'catalog.product.SubstractStock'| translate}}</label>
+                                        <select class="custom-select col-12"
+                                                formControlName="subtractStock">
+
+                                            <option value=''>- -Select Subtract Stock- -</option>
+                                            <option value="1">Yes</option>
+                                            <option value="0">No</option>
+                                            <!--<option value="3">Three</option>-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--Col-->
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'catalog.product.OutofStockStatus'| translate}}
+                                            <sup>*</sup>
+                                        </label>
+                                        <select class="custom-select col-12"
+                                                formControlName="outOfStockStatus"
+
+                                                [ngClass]="{'validationcolor':user.get('outOfStockStatus').hasError('required') && user.get('outOfStockStatus').touched&&submittedValues==true}">
+                                            <option value=''>- -Select Out of Stock Status- -</option>
+                                            <option value="1">pre order</option>
+                                            <option value="2">inStock</option>
+                                            <option value="3">2-3 days</option>
+                                        </select>
+
+                                        <div class="error"
+                                             *ngIf="user.get('outOfStockStatus').hasError('required') && user.get('outOfStockStatus').touched&&submittedValues==true">
+                                            {{'catalog.Error.OutofStockStatusRequired'| translate}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Col-->
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'catalog.product.DateAvailable'|
+                                            translate}}</label>
+                                        <mat-form-field>
+                                            <input matInput [matDatepicker]="picker_dateAvailable"
+                                                   formControlName="dateAvailable">
+                                            <mat-datepicker-toggle matSuffix
+                                                                   [for]="picker_dateAvailable"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker_dateAvailable></mat-datepicker>
+                                        </mat-form-field>
+                                        <!--                                        <input type="date" class="form-control" formControlName="dateAvailable">-->
+                                    </div>
+                                </div>
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'catalog.product.Status'| translate}}<sup>*</sup> </label>
+
+
+                                        <select class="custom-select col-12"
+                                                formControlName="status"
+                                                [ngClass]="{'validationcolor':user.get('status').hasError('required') && user.get('status').touched&&submittedValues==true}">
+                                            <option value=''>- -Select Status- -</option>
+                                            <option value="1">Enabled</option>
+                                            <option value="0">Disabled</option>
+                                        </select>
+
+
+                                        <div class="error"
+                                             *ngIf="user.get('status').hasError('required') && user.get('status').touched&&submittedValues==true">
+                                            {{'catalog.Error.StatusRequired'| translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Col-->
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'catalog.product.SortOrder'| translate}}</label>
+                                        <input type="text" class="form-control" appOnlyNumber
+                                               placeholder="{{'catalog.product.SortOrder'| translate}}"
+                                               formControlName="sortOrder">
+
+
+                                    </div>
+                                </div>
+
+                                <div class="data-col">
+                                    <div class="form-group">
+                                        <label>{{'catalog.product.Condition'| translate}}<sup>*</sup></label>
+
+
+                                        <select class="custom-select col-12"
+                                                formControlName="condition"
+                                                [ngClass]="{'validationcolor':user.get('condition').hasError('required') && user.get('condition').touched&&submittedValues==true}">
+                                            <option value=''>- -Select Condition- -</option>
+                                            <option value="1">new</option>
+                                            <option value="2">used</option>
+                                        </select>
+
+                                        <div class="error"
+                                             *ngIf="user.get('condition').hasError('required') && user.get('condition').touched&&submittedValues==true">
+                                            {{'catalog.Error.ConditionRequired'| translate}}
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--Col-->
+                                <div class="data-col">
+                                    <!--<div class="form-group">-->
+                                    <label class="control-label"
+                                           style="margin-left: 5px;padding: 1px 6px;">{{'catalog.product.RequiredShipping'|
+                                        translate}}</label>
+
+                                    <mat-radio-group formControlName="requiredShipping">
+                                        <mat-radio-button value="1">Free</mat-radio-button>
+                                        <mat-radio-button value="2">Paid</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <!--Col-->
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>{{'catalog.product.Images'| translate}}</ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="flex image-row">
+                                <div class="image-col" *ngFor="let data of uploadImage;let i=index">
+                                    <div class="img-hdr flex" *ngIf="!editId">
+                                        <input type="radio" name="'imageSelection'" [checked]="length==i"
+                                               (change)="checkBox($event,i)">
+                                        <a href="javascript:void(0)" (click)="deleteImage(i)"> <img
+                                                src="assets/img/delete-ico.png"> </a>
+                                    </div>
+                                    <div class="img-hdr flex" *ngIf="editId">
+                                        <input type="radio" name="'imageSelection'"
+                                               [checked]="defaultImageValue==data.defaultImage"
+                                               (change)="checkBox($event,i)">
+                                        <a href="javascript:void(0)" (click)="deleteImage(i)"> <img
+                                                src="assets/img/delete-ico.png"> </a>
+                                    </div>
+                                    <div class="img-bdy">
+                                        <img [src]="imageUrls+ '?width=60&height=60&path=' + data.containerName+ '&name='+data.image "
+                                             style=" width:100%; height:100%">
+                                    </div>
+                                </div>
+                                <!--Col-->
+                                <div class="image-col">
+                                    <div class="img-dflt">
+                                        <input style="cursor: pointer" (click)=" uploadProductImages()">
+                                        <img src="assets/img/add-photo-big.png">
+                                        <p>{{'catalog.product.Addimages'| translate}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <!--PRODUCT-->
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>{{'catalog.product.RelatedProducts'| translate}}</ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="flex categories-row">
+                                <div class="categories-col">
+                                    <h3>{{'catalog.product.AvailableProducts'| translate}}</h3>
+                                    <div class="form-group search-categories">
+
+                                        <form class="example-form">
+                                            <mat-form-field class="example-full-width" style="    width: 100%;">
+                                                <input type="text" placeholder="" (keyup)="searchProduct($event)"
+                                                       matInput>
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <ul class="flex category-list over-flowx">
+
+                                        <li *ngFor="let product of productSandbox.productList$ | async ;let i=index"
+                                            style="cursor: pointer"
+                                            (click)="selectProduct(product,i)">
+                                            <a
+                                                    href="javascript:void(0)"> <img src="assets/img/add-green-ico.png"
+                                            >
+                                            </a>
+                                            {{product.name}}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!---->
+                                <div class="categories-col">
+                                    <h3>{{'catalog.product.SelectedProducts'| translate}}</h3>
+                                    <div class="form-group search-categories">
+
+                                        <form class="example-form">
+                                            <mat-form-field class="example-full-width" style="    width: 100%;">
+                                                <input type="text" placeholder="" aria-label="Assignee" matInput
+                                                       (keyup)="searchSelectedCategory($event.target.value)">
+                                            </mat-form-field>
+                                        </form>
+
+                                        <ul class="flex category-list over-flowx" *ngIf="editId"
+                                            style="cursor: pointer">
+                                          <span>  <li *ngFor="let data of selectedProducts;let i=index"
+                                                      (click)="removeProduct(data,i)">
+                                                <a href="javascript:void(0)">&nbsp;
+                                                    <img src="assets/img/minus-red-ico.png"></a>
+                                              {{data.name}}
+
+                                            </li></span>
+
+                                        </ul>
+                                        <ul class="flex category-list " *ngIf="!editId" style="cursor: pointer">
+                                          <span>  <li *ngFor="let selected of selectedProducts;let i=index"
+                                                      (click)="removeProduct(selected,i)">
+                                                <a href="javascript:void(0)">
+                                                    <img src="assets/img/minus-red-ico.png"> &nbsp;</a>
+                                              {{selected.name}}
+
+                                            </li></span>
+
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>{{'catalog.product.Discount'| translate}}</ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="option-table">
+                                <div formGroupName="discountForm">
+                                    <div formArrayName='discountFormArray'>
+                                        <table>
+                                            <tr>
+                                                <th></th>
+                                                <th style="padding: 5px 0px;">{{'catalog.product.CustomerGroup'| translate}}</th>
+                                                <th style="padding: 5px 16px;">{{'catalog.product.Qty'| translate}}</th>
+                                                <th>{{'catalog.product.Priority'| translate}}</th>
+                                                <th>{{'catalog.product.price'| translate}}</th>
+                                                <th>{{'catalog.product.DateStart'| translate}}</th>
+                                                <th>{{'catalog.product.DateEnd'| translate}}</th>
+                                                <th></th>
+                                            </tr>
+                                        </table>
+                                        <table class="table-bordered">
+                                            <div *ngFor='let group of discountArray["controls"]; let i=index;'>
+                                                <div [formGroupName]='i'>
+                                                    <tr>
+                                                        <td style="width: 230px">
+                                                            <div class="form-group">
+                                                                <select class="custom-select col-12 form-control"
+                                                                        formControlName='disCustomerGroup'>
+                                                                    <option [value]=1
+                                                                            selected>{{'catalog.product.Default'| translate}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width: 170px">
+
+                                                            <div class="form-group">
+                                                                <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        placeholder='Quantity'
+                                                                        formControlName="discountQuantity">
+                                                            </div>
+
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        placeholder='Priority'
+                                                                        formControlName="discountPriority">
+                                                            </div>
+
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        placeholder='Price'
+                                                                        formControlName="discountPrice">
+                                                            </div>
+                                                        </td>
+                                                        <td class="datePiker">
+
+                                                            <div class="form-group">
+                                                                <mat-form-field>
+                                                                    <input matInput
+                                                                           [matDatepicker]="picker_discountDateStart"
+                                                                           formControlName="discountDateStart">
+                                                                    <mat-datepicker-toggle matSuffix
+                                                                                           [for]="picker_discountDateStart"></mat-datepicker-toggle>
+                                                                    <mat-datepicker
+                                                                        #picker_discountDateStart></mat-datepicker>
+                                                                </mat-form-field>
+                                                            </div>
+                                                        </td>
+                                                        <td class="datePiker">
+                                                            <div class="form-group">
+                                                                <mat-form-field>
+                                                                    <input matInput
+                                                                           [matDatepicker]="picker_discountDateEnd"
+                                                                           formControlName="discountDateEnd">
+                                                                    <mat-datepicker-toggle matSuffix
+                                                                                           [for]="picker_discountDateEnd"></mat-datepicker-toggle>
+                                                                    <mat-datepicker
+                                                                        #picker_discountDateEnd></mat-datepicker>
+                                                                </mat-form-field>
+                                                            </div>
+                                                        </td>
+
+
+                                                        <td class="text-center"><a href="javascript:void(0)"
+                                                                                   (click)='deleteDiscountForm(i)'>
+                                                            <img
+                                                                    src="assets/img/minus-red-ico-big.png"> </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </div>
+                                            </div>
+                                        </table>
+
+                                    </div>
+                                </div>
+                                <td class="text-center" style="float: right"><a href="javascript:void(0)"
+                                                                                (click)='addDiscountForm()'>
+                                    <img src="assets/img/add-blue-circle-big.png"></a>
+                                </td>
+
+                            </div>
+                            <!--Checkbox-->
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>Special</ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="option-table">
+                                <div formGroupName="specialForm">
+                                    <div formArrayName='specialFormArray'>
+                                        <table>
+                                            <tr>
+                                                <th style="padding: 0px 0px;">{{'catalog.product.CustomerGroup'| translate}}</th>
+                                                <th>{{'catalog.product.Priority'| translate}}</th>
+                                                <th>{{'catalog.product.price'| translate}}</th>
+                                                <th>{{'catalog.product.DateStart'| translate}}</th>
+                                                <th>{{'catalog.product.DateEnd'| translate}}</th>
+                                                <th></th>
+                                            </tr>
+                                        </table>
+                                        <table class="table-bordered">
+                                            <div *ngFor='let group of specialArray["controls"]; let i=index;'>
+                                                <div [formGroupName]='i'>
+                                                    <tr>
+                                                        <td style="width: 280px;">
+                                                            <div class="form-group">
+                                                                <select class="custom-select col-12 form-control"
+                                                                        formControlName='specialCustomerGroup'>
+                                                                    <option [value]=1 selected>Default</option>
+                                                                </select>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        placeholder='Priority'
+                                                                        formControlName="specialPriority">
+                                                            </div>
+
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        placeholder='Price'
+                                                                        formControlName="specialPrice">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <mat-form-field>
+                                                                    <input matInput
+                                                                           [matDatepicker]="picker_specialDateStart"
+                                                                           formControlName="specialDateStart">
+                                                                    <mat-datepicker-toggle matSuffix
+                                                                                           [for]="picker_specialDateStart"></mat-datepicker-toggle>
+                                                                    <mat-datepicker
+                                                                        #picker_specialDateStart></mat-datepicker>
+                                                                </mat-form-field>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+
+                                                            <div class="form-group">
+                                                                <mat-form-field>
+                                                                    <input matInput
+                                                                           [matDatepicker]="picker_specialDateEnd"
+                                                                           formControlName="specialDateEnd">
+                                                                    <mat-datepicker-toggle matSuffix
+                                                                                           [for]="picker_specialDateEnd"></mat-datepicker-toggle>
+                                                                    <mat-datepicker
+                                                                        #picker_specialDateEnd></mat-datepicker>
+                                                                </mat-form-field>
+                                                            </div>
+                                                        </td>
+
+
+                                                        <td class="text-center"><a href="javascript:void(0)"
+                                                                                   (click)='deleteSpecialForm(i)'>
+                                                            <img
+                                                                    src="assets/img/minus-red-ico-big.png"> </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </div>
+
+                                            </div>
+                                        </table>
+
+                                    </div>
+                                </div>
+                                <td class="text-center" style="float: right"><a href="javascript:void(0)"
+                                                                                (click)='addSpecialForm()'>
+                                    <img src="assets/img/add-blue-circle-big.png"></a>
+                                </td>
+
+                            </div>
+                        </ng-template>
+                        <!--Checkbox-->
+                    </ngb-tab>
+
+                </ngb-tabset>
+
+            </div>
+        </div>
+    </div>
+</form>
+

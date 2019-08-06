@@ -1,0 +1,150 @@
+<div class="row products-section products-sub-section">
+    <div class="col-12">
+        <div class="breadcrumbs-row">
+            <div class="bc-col">
+                <ul>
+                    <li><a href="javascript:void(0)"> {{'catalog.product.Catalog'| translate}} </a></li>
+                    <li> {{'catalog.Brand.Brand'| translate}}</li>
+                </ul>
+            </div>
+            <div class="bc-col-btn">
+                <button class="btn" (click)='addBrand()'><img
+                        src="assets/img/add-white-ico.png"> {{'catalog.Brand.AddBrand'| translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--Breadcrumbs-->
+    <div class="col-12">
+        <div class="flex filter-row">
+            <div class="filter-lft">
+                <div class="toggle">
+                </div>
+                <div class="order-status">
+                    <p>{{'Sales.Orders.Status'| translate}}</p>
+                    <li style="list-style: none">
+                        <span style="display: inline-block;width: 14px;height: 16px;margin-right: 6px;vertical-align: middle;background-color: #32b643;"></span>Active
+                        <span style="display: inline-block;width: 14px;height: 16px;margin-left: 3px;margin-right: 7px;vertical-align: middle;background-color: #ea5738e6;"></span>In
+                        Active
+
+                    </li>
+                </div>
+            </div>
+            <!--Lft-->
+            <div class="filter-nav-list">
+                <ul class="flex">
+                    <li><a href="javascript:void(0)" placement="top-right"
+                           ngbTooltip="{{'ToolTip.comingsoon'| translate}}"> <img
+                            src="assets/img/export-ico.png"> {{'catalog.product.Export'| translate}} </a></li>
+                    <li><a href="javascript:void(0)" placement="top-right"
+                           ngbTooltip="{{'ToolTip.comingsoon'| translate}}"> <img
+                            src="assets/img/import-ico.png"> {{'catalog.product.Import'| translate}} </a></li>
+                    <li><a href="javascript:void(0)" placement="top-right"
+                           ngbTooltip="{{'ToolTip.comingsoon'| translate}}"> <img src="assets/img/list-ico.png"> </a>
+                    </li>
+                </ul>
+            </div>
+            <!--Right-->
+        </div>
+    </div>
+</div>
+<div class="flex product-wrap">
+
+    <div *ngIf="buttoncheck == true">
+    </div>
+    <!--Filter-->
+    <div class="product-table" [ngClass]="{'changesize': buttoncheck == true }">
+        <div class="table-responsive">
+
+            <div class="table-responsive">
+                <table class=" table ">
+                    <thead>
+                    <tr>
+                        <th scope="col" width="5%">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                </div>
+                            </div>
+                        </th>
+                        <th class="text-center" scope="col">{{'catalog.Brand.BrandName'| translate}}</th>
+                        <th class="text-center" scope="col">{{'catalog.Brand.BrandImage'| translate}}</th>
+                        <th class="text-center" scope="col">{{'catalog.product.SortOrder'| translate}}</th>
+                        <th class="text-center" scope="col">{{'catalog.product.Action'| translate}}</th>
+                        <th class="text-center" scope="col" width="100px"
+                            class="text-center">{{'catalog.product.Status'| translate}}
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor='let arr of (sandbox.getManufactureList$|async)'>
+                        <th scope="row" class="text-center">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id={{arr.manufacturerId}}
+                                           value="check" [checked]="arr.checked">
+                                    <label class="custom-control-label" for={{arr.manufacturerId}}></label>
+                                </div>
+                            </div>
+
+                        </th>
+
+                        <td class="text-center">{{arr.name}}
+                        </td>
+                        <td class="text-center"><img
+                                [src]="imageUrl+ '?width=60&height=60&path=' + arr.imagePath + '&name='+ arr.image">
+                        </td>
+                        <td class="text-center">{{arr.sortOrder}}</td>
+                        <td class="text-center">
+                            <a href="javascript:void(0)" (click)='editManufacture(arr)'> <img
+                                    src="assets/img/edit-ico.png"></a>
+                            <a href="javascript:void(0)">
+                                <img src="assets/img/delete-file-ico.png"
+                                     [ngbPopover]="deleteContent"
+                                     placement="bottom"
+                                     #deletePop="ngbPopover"
+                                     style="margin-left: 15px;">
+                                <ng-template #deleteContent>
+                                    <div class="style">
+                                        <div class="modal-header">
+                                            <h6 class="modal-title"
+                                                style="margin-left: 17%;">{{'catalog.product.DoYouWantToDelete'|
+                                                translate}}</h6>
+                                        </div>
+                                        <div class="modal-footer" style="margin-right: 23%;">
+                                            <button type="button" class="btn btn-danger" (click)="deletePop.close()"
+                                                    data-dismiss="modal">{{'catalog.product.No'| translate}}
+                                            </button>
+                                            <button type="button" class="btn btn-success"
+                                                    (click)="deleteBrand(arr.manufacturerId, deletePop)"
+                                                    data-dismiss="modal">{{'catalog.product.Yes'| translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <div *ngIf="arr.isActive === 1">
+                                <span style="width: 41px;background: #32b643; color: white;display: inline-block;padding: 1px 4px;"><b>{{'Settings.Role.Active'| translate}}</b></span>
+
+                            </div>
+                            <div *ngIf="arr.isActive === 0">
+                                <span style="background: #ea5738e6; color: white;width: 63px;display: inline-block;padding: 1px 4px;"><b>{{'Settings.Role.InActive'| translate}}</b></span>
+
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <mat-paginator
+                    [length]='(sandbox.getManufacturercount$|async)'
+                    [pageSize]="pageSize"
+                    [pageSizeOptions]="[pageSize]"
+                    (page)="onPageChange($event)">
+            </mat-paginator>
+
+        </div>
+    </div>
+    <!--Table-->
+</div>

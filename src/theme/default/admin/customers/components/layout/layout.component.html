@@ -1,0 +1,38 @@
+<app-cms-header></app-cms-header>
+<div class="row products-section">
+    <div class="col-12">
+        <div class="card">
+            <div class="product-ts-left">
+                <ul>
+                    <li>
+                        <p>{{'Customers.Customer.TotalCustomer' | translate}} </p>
+                        <h3>{{layoutSandbox.totalCustomerCount$ | async}}
+                            <button type="button" class="btn" placement="right"
+                                    ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
+                                <img src="assets/img/info-ico.png"></button>
+                        </h3>
+                    </li>
+                    <li>
+                        <p>{{'Customers.Customer.ActiveCustomer' | translate}}  </p>
+                        <h3>{{layoutSandbox.activeCustomerCount$ | async}}
+                            <button type="button" class="btn" placement="right"
+                                    ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
+                                <img src="assets/img/info-ico.png"></button>
+                        </h3>
+                    </li>
+                    <li>
+                        <p>{{'Customers.Customer.In-ActiveCustomer' | translate}}</p>
+                        <h3>{{layoutSandbox.inActiveCustomerCount$ | async}}
+                            <button type="button" class="btn" placement="left"
+                                    ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
+                                <img src="assets/img/info-ico.png"></button>
+                        </h3>
+                    </li>
+                </ul>
+            </div>
+            <!--Left-->
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

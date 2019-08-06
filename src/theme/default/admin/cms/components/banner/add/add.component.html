@@ -1,0 +1,109 @@
+<div class="row products-section">
+    <div class="col-12">
+        <div class="breadcrumbs-row noborder">
+            <div class="bc-col">
+                <ul>
+                    <li><a href="javascript:void(0)"> {{'CMS.Pages.CMS'| translate}} </a></li>
+                    <li>{{'CMS.Banners.AddBanners'| translate}}</li>
+                </ul>
+            </div>
+            <div class="bc-col-btn ap-col-btn">
+                <button type="submit" (click)="onSubmit()" class="btn btn-save"><img
+                        src="assets/img/tick-round-white.png">{{'CMS.Banners.Save'| translate}}
+                </button>
+                <button (click)="bannerCancel()" class="btn btn-cancel"><img
+                        src="assets/img/close-white-ico.png">{{'CMS.Banners.Cancel'| translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--Breadcrumbs-->
+</div>
+
+<div class="flex addproduct-wrap addgroup-wrap">
+
+    <div class="card ap-general">
+        <form (ngSubmit)="onSubmit()" [formGroup]="bannerForm">
+            <div class="ap-header">
+                {{'CMS.Pages.GeneralInformation'| translate}}
+            </div>
+            <div class="flex ap-body cmsap-body">
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>{{'CMS.Banners.BannerTitle'| translate}}<sup>*</sup> </label>
+                        <input type="text" class="form-control" [(ngModel)]="bannerTitle" formControlName="bannerTitle"
+                               placeholder="{{'CMS.BannerPlaceholder.BannerTitle'| translate}}"
+                               [ngClass]="{ 'is-invalid': submitted && f.bannerTitle.errors }">
+                        <div *ngIf="submitted && f.bannerTitle.errors" class="invalid-feedback">
+                            <div *ngIf="f.bannerTitle.errors.required">{{'CMS.BannerError.BannerTitleIsRequired'|
+                                translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Col-->
+                <div class="ap-body-col width100">
+                    <div class="form-group">
+                        <label>Banner Content</label>
+                        <ckeditor
+                                formControlName="bannerContent"
+                                [ngClass]="{'Validationcolor':bannerForm.get('bannerContent').hasError('required') && bannerForm.get('bannerContent').touched&&submitted==true}">
+                        </ckeditor>
+
+                    </div>
+                </div>
+                <!--Col-->
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>Link</label>
+                        <input type="text" class="form-control" [(ngModel)]="bannerLink" formControlName="bannerLink"
+                               placeholder="{{'CMS.BannerPlaceholder.EnterLink'| translate}}"
+                               [ngClass]="{ 'is-invalid': submitted && f.bannerLink.errors }">
+                        <div *ngIf="submitted && f.bannerLink.errors" class="invalid-feedback">
+                            <div *ngIf="f.bannerLink.errors.required">{{'CMS.BannerError.LinkIsRequired'| translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Col-->
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>Position</label>
+                        <input type="text" class="form-control" [(ngModel)]="position" formControlName="position"
+                               placeholder="{{'CMS.BannerPlaceholder.EnterPosition'| translate}}"
+                               [ngClass]="{ 'is-invalid': submitted && f.position.errors }">
+                        <div *ngIf="submitted && f.position.errors" class="invalid-feedback">
+                            <div *ngIf="f.position.errors.required">{{'CMS.BannerError.PositionIsRequired'|
+                                translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--col-->
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <div class="image-col">
+                            <div class="img-dflt">
+                                <input type="file" name="userImg" (change)="uploadChange($event)" accept="image/*"
+                                       #filePath style="display: none">
+                                <img [src]="postImageUrl" width="13%" height="13%">
+                                <p></p>
+                                <button (click)="uploadButtonClick()"
+                                        type="button">{{'CMS.Banners.UploadPic'| translate}}
+                                </button>
+                            </div>
+                            <span *ngIf='submitted' style="color:red">{{'shared.imagemanagerpopup.ImageRequired' | translate}}</span>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--col-->
+            </div>
+        </form>
+    </div>
+    <!--General-->
+
+
+</div>
+

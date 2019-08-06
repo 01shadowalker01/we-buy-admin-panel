@@ -1,0 +1,125 @@
+<form novalidate [formGroup]="editProfileForm">
+    <div class="row products-section">
+        <div class="col-12">
+            <div class="breadcrumbs-row noborder">
+                <div class="bc-col">
+                    <ul>
+                        <li> {{'Profile.Auth.EditProfile' | translate}}</li>
+                    </ul>
+                </div>
+                <div class="bc-col-btn ap-col-btn">
+                    <button class="btn btn-save" (click)="save(editProfileForm.value)"><img
+                            src="assets/img/tick-round-white.png">{{'Profile.Auth.Save' | translate}}
+                    </button>
+                    <button (click)="editprofileCancel()" class="btn btn-cancel"><img
+                            src="assets/img/close-white-ico.png"> {{'Profile.Auth.Cancel' | translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!--Breadcrumbs-->
+    </div>
+
+    <div class="flex addproduct-wrap addgroup-wrap">
+
+        <div class="card ap-general">
+            <div class="flex ap-body ap-edit-body">
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>{{'Profile.Auth.Name' | translate}} <sup>*</sup></label>
+                        <input type="text" class="form-control" placeholder="Name" formControlName="Name"
+                               [ngClass]="{'validationcolor':editProfileForm.get('Name').hasError('required') && editProfileForm.get('Name').touched  &&ifSubmitted==true}">
+
+                        <div class="error"
+                             *ngIf="(editProfileForm.get('Name').hasError('required') && editProfileForm.get('Name').touched)  &&ifSubmitted==true">
+                            {{'Profile.Error.NameRequired' | translate}}
+                        </div>
+                        <div class="error"
+                             *ngIf="(editProfileForm.get('Name').hasError('pattern') && editProfileForm.get('Name').touched)  &&ifSubmitted==true">
+
+                            {{'Profile.Error.IncorrectUserEmail' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!--Col-->
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>{{'Profile.Auth.Email' | translate}} <sup>*</sup></label>
+                        <input type="text" class="form-control" placeholder="{{'Profile.Auth.Email' | translate}} "
+                               formControlName="Email"
+                               [ngClass]="{'validationcolor':editProfileForm.get('Email').hasError('required') && editProfileForm.get('Email').touched  &&ifSubmitted==true}">
+
+                        <div class="error"
+                             *ngIf="(editProfileForm.get('Email').hasError('required') && editProfileForm.get('Email').touched)  &&ifSubmitted==true">
+                            {{'Profile.Error.EmailRequired' | translate}}
+                        </div>
+                        <div class="error"
+                             *ngIf="(editProfileForm.get('Email').hasError('pattern') && editProfileForm.get('Email').touched)  &&ifSubmitted==true">
+
+                            {{'Profile.Error.IncorrectEmail' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!--Col-->
+
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>{{'Profile.Auth.PhoneNumber' | translate}} <sup>*</sup> </label>
+                        <input type="text" class="form-control" maxlength="10" appOnlyNumber
+                               placeholder="{{'Profile.Auth.PhoneNumber' | translate}}" formControlName="Phone"
+                               [ngClass]="{'validationcolor':editProfileForm.get('Phone').hasError('required') && editProfileForm.get('Phone').touched  &&ifSubmitted==true}">
+
+
+                        <div class="error"
+                             *ngIf="(editProfileForm.get('Phone').hasError('required') && editProfileForm.get('Phone').touched)  &&ifSubmitted==true">
+                            {{'Profile.Error.PhoneNumberRequired' | translate}}
+                        </div>
+                        <div class="error"
+                             *ngIf="(editProfileForm.get('Phone').hasError('pattern') && editProfileForm.get('Phone').touched)  &&ifSubmitted==true">
+                            {{'Profile.Error.IncorrectNumber' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!--Col-->
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label>{{'Profile.Auth.Address' | translate}}<sup>*</sup></label>
+                        <textarea class="form-control"
+                                  rows="2"
+                                  placeholder="{{'Profile.Auth.Address' | translate}}"
+                                  formControlName="Address"
+                                  [ngClass]="{'validationcolor':editProfileForm.get('Address').hasError('required') && editProfileForm.get('Address').touched  &&ifSubmitted==true}"></textarea>
+
+                        <div class="error"
+                             *ngIf="(editProfileForm.get('Address').hasError('required') && editProfileForm.get('Address').touched)  &&ifSubmitted==true">
+                            {{'Profile.Error.Addressrequired' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!--Col-->
+                <div class="ap-body-col">
+                    <div class="form-group">
+                        <label> {{'Profile.Auth.profileImage' | translate}} <sup>*</sup></label>
+                        <div class="flex avatar-wrap">
+                            <div class="avathar-img">
+                                <img *ngIf="Image" [src]="Image" style="width: 100%; height: 100%">
+                                <img *ngIf="postImageUrl" [src]="postImageUrl">
+                            </div>
+                            <div class="avathar-file">
+                                <input type="file" #filePath (change)="docufile($event)">
+                            </div>
+                            <a href="javascript:void(0)" (click)='uploadButtonClick()'>{{'Profile.Auth.Change' | translate}}</a>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!--Col-->
+            </div>
+        </div>
+        <!--General-->
+    </div>
+</form>
+<!--<app-profile-bar  [userDetails]="profileData"></app-profile-bar>-->
+
+

@@ -1,0 +1,109 @@
+<div class="settings-right-wrapper addnewuser">
+    <div class="flex setting-inner-header">
+        <h3><span
+                style="color:#FF006A">{{currencyId ? 'Update Currency' : 'Add Currency'}}</span></h3>
+    </div>
+    <div class="new-user">
+        <form (ngSubmit)="onSubmit()" [formGroup]="currencyForm" class="form-horizontal m-t-20">
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.Local.Currency.CurrencyTitle' | translate}}<sup>*</sup></label>
+                        <input type="text" placeholder="Title"
+                               class="form-control"
+                               formControlName="title"
+                               [ngClass]="{'validationcolor':currencyForm.get('title').hasError('required') && currencyForm.get('title').touched && submitted}">
+                        <div class="error"
+                             *ngIf="currencyForm.get('title').hasError('required') && currencyForm.get('title').touched && submitted">
+                            {{'Settings.Local.Currency.Error.currencytittle' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.Local.Currency.CurrencyCode' | translate}}<sup>*</sup></label>
+                        <input type="text" placeholder="Currency Code"
+                               class="form-control"
+                               style="text-transform:uppercase"
+                               formControlName="code"
+                               [ngClass]="{'validationcolor':!currencyForm.get('code').valid && !currencyForm.get('code').untouched && submitted}">
+                        <div class="error"
+                             *ngIf="currencyForm.get('code').hasError('required') && currencyForm.get('code').touched && submitted">
+                            {{'Settings.Local.Currency.Error.Currencycodeisrequired' | translate}}
+                        </div>
+                        <div class="error"
+                             *ngIf="currencyForm.get('code').hasError('maxlength') && currencyForm.get('code').touched && submitted">
+                            {{'Settings.Local.Currency.Error.MaxLength3' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.Local.Currency.SymbolLeft' | translate}}</label>
+                        <input type="text" placeholder="Symbol Left"
+                               class="form-control"
+                               formControlName="symbolLeft">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.Local.Currency.SymbolRight' | translate}}</label>
+                        <input type="text" placeholder="Symbol Right"
+                               class="form-control"
+                               formControlName="symbolRight">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.Local.Currency.Value' | translate}}<sup>*</sup></label>
+                        <input
+                                type="number" placeholder="Number"
+                                class="form-control"
+                                formControlName="value"
+                                [ngClass]="{'validationcolor':!currencyForm.get('value').valid && !currencyForm.get('value').untouched && submitted}">
+                        <div class="error"></div>
+                        <div class="error"
+                             *ngIf="currencyForm.get('value').hasError('required') && currencyForm.get('value').touched && submitted">
+                            {{'Settings.Local.Currency.Error.valueisMustinnumber' | translate}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.Local.Currency.Status' | translate}}
+                            <sup>*</sup></label>
+                        <select class="form-control custom-select"
+                                formControlName="status"
+                                data-placeholder="Choose Role"
+                                placeholder="status"
+                                [ngClass]="{'validationcolor':!currencyForm.get('status').valid && !currencyForm.get('status').untouched && submitted}">
+                            <option value=''>- -Select Status- -</option>
+                            <option value="1">{{'Settings.Local.Currency.Enabled' | translate}}</option>
+                            <option value="0">{{'Settings.Local.Currency.Disabled' | translate}}</option>
+                        </select>
+                        <div class="error"
+                             *ngIf="currencyForm.get('status').hasError('required') && currencyForm.get('status').touched && submitted">
+                            {{'Settings.Local.Currency.Error.statusisrequired' | translate}}
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="flex user-btn">
+                        <button type="submit" class="btn btn-add">{{'Settings.Local.Save' | translate}}</button>
+
+                        <button (click)="cancel()"
+                                class="btn btn-cancel"> {{'Settings.Local.Country.Cancel' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+

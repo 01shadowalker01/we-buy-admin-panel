@@ -1,0 +1,44 @@
+<div class="settings-section">
+    <div class="settings-header">
+        <h3>{{'Settings.nav.settings'| translate}}</h3>
+    </div>
+</div>
+
+<div class="settings-sidebar">
+    <ul class="flex">
+        <li><a href="javascript:void(0)" [routerLink]="['/settings/role']" [routerLinkActive]="'active'">{{'Settings.nav.Role'| translate}}  </a></li>
+        <li><a href="javascript:void(0)" [routerLink]="['/settings/user']" [routerLinkActive]="'active'"> {{'Settings.nav.User'| translate}} </a></li>
+        <li><a href="javascript:void(0)" [routerLink]="['/settings/generalsetting']" [routerLinkActive]="'active'">{{'Settings.nav.GeneralSettings'| translate}}</a></li>
+        <li><a href="javascript:void(0)"  class="sidebar_menu" [matMenuTriggerFor]="personalizesettings" >  {{'Settings.nav.Personalize'| translate}} </a></li>
+        <mat-menu [backdropClass]="'settings-menu'" #personalizesettings="matMenu">
+            <button mat-menu-item [routerLink]="['/settings/personalizeproduct']">{{'Settings.nav.Product'| translate}}</button>
+            <button mat-menu-item [routerLink]="['/settings/personalizeorder']">{{'Settings.nav.Order'| translate}}</button>
+        </mat-menu>
+        <li><a href="javascript:void(0)" class="sidebar_menu" [matMenuTriggerFor]="sitesettings">{{'Settings.nav.siteSettings'| translate}}</a></li>
+        <mat-menu [backdropClass]="'settings-menu'" #sitesettings="matMenu">
+            <button mat-menu-item [routerLink]="['/settings/appearance']"> {{'Settings.nav.Appearance'| translate}}</button>
+            <button mat-menu-item [routerLink]="['/settings/social']"> {{'Settings.nav.Social'| translate}} </button>
+            <button mat-menu-item [routerLink]="['/settings/seo']">{{'Settings.nav.Seo'| translate}}</button>
+        </mat-menu>
+        <li><a href="javascript:void(0)" class="sidebar_menu" [matMenuTriggerFor]="localizations">{{'Settings.nav.Localizations'| translate}}</a></li>
+        <mat-menu [backdropClass]="'settings-menu'" #localizations="matMenu">
+            <button mat-menu-item [routerLink]="['/settings/countries']">{{'Settings.nav.Countries'| translate}}</button>
+            <button mat-menu-item [routerLink]="['/settings/zone']"> {{'Settings.nav.Zone'| translate}}</button>
+            <button mat-menu-item [routerLink]="['/settings/currency']">{{'Settings.nav.Currencies'| translate}}</button>
+            <button mat-menu-item [routerLink]="['/settings/language']">{{'Settings.nav.Languages'| translate}}</button>
+            <button mat-menu-item [routerLink]="['/settings/emailtemp']">{{'Settings.nav.EmailTemplate'| translate}} </button>
+            <button mat-menu-item [routerLink]="['/settings/order-status']">{{'Settings.nav.OrderStatus'| translate}} </button>
+            <button mat-menu-item [routerLink]="['/settings/stock-status']">{{'Settings.nav.StockStatus'| translate}} </button>
+        </mat-menu>
+        <li>
+            <a href="javascript:void(0)" placement="bottom"
+               ngbTooltip="{{'ToolTip.comingsoon'| translate}}">{{'Settings.nav.PaymentSettings'| translate}}</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" placement="bottom"
+               ngbTooltip="{{'ToolTip.comingsoon'| translate}}">{{'Settings.nav.System'| translate}}</a>
+        </li>
+    </ul>
+</div>
+
+<router-outlet></router-outlet>

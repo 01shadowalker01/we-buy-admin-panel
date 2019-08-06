@@ -1,0 +1,148 @@
+<div class="row products-section view-orders">
+    <div class="col-12">
+        <div class="breadcrumbs-row noborder">
+            <div class="bc-col">
+                <ul>
+                    <li><a href="javascript:void(0)">{{'Sales.Orders.Sales'| translate}}  </a></li>
+                    <li>  {{'Sales.Orders.ViewOrders'| translate}} </li>
+                </ul>
+            </div>
+            <div class="bc-col-btn ap-col-btn">
+            </div>
+        </div>
+    </div>
+    <!--Breadcrumbs-->
+</div>
+
+<div class="row vieworder-wrap" *ngIf="(orderSandbox.getvieworderData$ | async) as detail">
+
+    <div class="order-wrap">
+
+        <div class="flex order-top">
+            <h3>{{'Sales.Orders.OrderId'| translate}} #{{detail.orderPrefixId}}</h3>
+            <a *ngIf="(orderSandbox.settingDetail$ | async) as setting" href="javascript:void(0)"
+               (click)="downloadInvoiceDetail(detail, setting)">{{'Sales.Orders.DownloadInvoice'| translate}} </a>
+        </div>
+        <!-- Top -->
+
+        <div class="order-content">
+
+            <div class="flex order-row">
+
+                <div class="order-col">
+                    <div class="order-lft-detail">
+                        <h4>
+                            <span>{{'Sales.Orders.OrderDate'| translate}}  </span> {{detail.createdDate | date:"dd/MM/yyyy"}}
+                        </h4>
+                        <h4>
+                            <span>{{'Sales.Orders.OrderStatus'| translate}} </span>
+                            <span class="process">
+                <div class="form-group">
+                     <select class="custom-select col-12" [(ngModel)]="detail.orderStatusId"
+                             (ngModelChange)="onItemChange($event)">
+                             <option [disabled]="isDisabled"
+                                     *ngFor="let data of orderStatusSandbox.getOrderstatuslist$ | async"
+                                     value={{data.orderStatusId}}>{{data.name}}</option>
+
+                  </select>
+                </div>
+              </span>
+                        </h4>
+                    </div>
+                </div>
+
+
+                <div class="order-col">
+                    <h3>{{'Sales.Orders.CustomerInformation'| translate}}</h3>
+                    <div class="order-lft-detail">
+                        <h4>
+                            <span>{{'Sales.Orders.CustomerName'| translate}}  </span>{{detail.shippingFirstname + ' ' + detail.shippingLastname}}
+                        </h4>
+                        <h4><span>{{'Sales.Orders.EmailId'| translate}}   </span> <a
+                                href="javascript:void(0)">{{detail.customerDetail.email}}</a></h4>
+                    </div>
+                </div>
+                <!--  -->
+
+            </div>
+            <!--  Order Row-->
+
+            <div class="flex order-row">
+
+                <div class="order-col">
+                    <h3>{{'Sales.Orders.ShippingAddress'| translate}}  <a
+                            href="javascript:void(0)"></a></h3>
+                    <div class="order-lft-detail">
+                        <p class="addr">{{detail.shippingAddress1}}</p>
+                        <p class="addr">{{detail.shippingAddress2}}</p>
+                        <p class="addr">{{detail.shippingCity}}</p>
+                        <p class="addr">{{detail.shippingCountry}}</p>
+                        <p class="phone">{{'Sales.Orders.Phone'| translate}} : <span>{{detail.telephone}}</span></p>
+                    </div>
+                </div>
+                <!--  -->
+
+                <div class="order-col">
+                    <h3>{{'Sales.Orders.BillingAddress'| translate}}   <a
+                            href="javascript:void(0)"></a></h3>
+                    <div class="order-lft-detail">
+                        <p class="addr">{{detail.shippingAddress1}}</p>
+                        <p class="addr">{{detail.shippingAddress2}}</p>
+                        <p class="addr">{{detail.shippingCity}}</p>
+                        <p class="addr">{{detail.shippingCountry}}</p>
+                        <p class="phone">{{'Sales.Orders.Phone'| translate}} : <span>{{detail.telephone}}</span>
+                        </p>
+                    </div>
+                </div>
+                <!--  -->
+
+            </div>
+            <!--  Order Row-->
+
+            <div class="order-table">
+                <h3>{{'Sales.Orders.ItemsList'| translate}} </h3>
+                <table class="table">
+                    <tr>
+                        <th>{{'Sales.Orders.Products'| translate}}</th>
+                        <th width="20%" class="text-right">{{'Sales.Orders.Price'| translate}}</th>
+                        <th width="20%" class="text-right">{{'Sales.Orders.Qty'| translate}}</th>
+                        <th width="20%" class="text-right">{{'Sales.Orders.TotalAmount'| translate}}</th>
+                    </tr>
+                    <tr *ngFor="let order of detail.productList">
+                        <td>
+                            <!--                            <div style="font-size: 18px" *ngIf="order.productDetail.image" class="order-img"><img-->
+                            <!--                                    [src]="imageUrl + '?width=60&height=60&path=' +order.productDetail.imagePath + '&name='+ order.productDetail.image">-->
+                            <!--                            </div>-->
+                            <p style="margin-top: 30px;font-size: 15px;"> {{order.name}} </p>
+                            <div *ngFor="let orderinfo of orderDetails;let i=index" style="margin-left: 10px;">
+                                {{orderinfo.name}} : {{orderinfo.value}}
+                            </div>
+                        </td>
+                        <td class="text-right">{{order.productPrice | currency:'INR':'symbol-narrow'}}</td>
+                        <td class="text-right">{{order.quantity}}</td>
+                        <td class="text-right">{{order.total | currency:'INR':'symbol-narrow'}}</td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-right total-amount">{{'Sales.Orders.TotalAmount'| translate}} </td>
+                        <td class="text-right total-amount"><b>{{detail.total | currency:'INR':'symbol-narrow'}}</b>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- Table -->
+            <div class="flex order-btn">
+                <a href="javascript:void(0)"
+                   [routerLink]="['/sales/orders/list']">{{'Sales.Orders.Cancel'| translate}}  </a>
+                <a *ngIf="(orderSandbox.settingDetail$ | async) as setting" href="javascript:void(0)" class="dload"
+                   (click)="downloadInvoiceDetail(detail, setting)">{{'Sales.Orders.DownloadInvoice'| translate}}</a>
+            </div>
+
+        </div>
+        <!-- Order Content -->
+
+    </div>
+    <!-- Order Wrap -->
+
+</div>
+

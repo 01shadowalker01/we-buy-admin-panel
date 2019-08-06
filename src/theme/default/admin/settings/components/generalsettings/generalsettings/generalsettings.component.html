@@ -1,0 +1,150 @@
+<div class="settings-right-wrapper addnewuser">
+    <div class="flex setting-inner-header">
+        <h3>{{'Settings.generalsettings.Settingspath'| translate}}</h3>
+
+    </div>
+    <div class="new-user">
+        <h3>{{'Settings.generalsettings.Store'| translate}}</h3>
+
+        <form (ngSubmit)="onSubmit()" [formGroup]="generalSettings" class="form-horizontal m-t-20">
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.generalsettings.StoreName'| translate}} </label>
+                        <input type="text" formControlName="storeName" class="form-control"/>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.generalsettings.StoreOwner'| translate}} </label>
+                        <input type="text" formControlName="storeOwner" class="form-control"/>
+
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.generalsettings.Address'| translate}}</label>
+                        <textarea class="form-control" formControlName="address"
+                                  placeholder="Address"></textarea>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.generalsettings.Email'| translate}}</label>
+                        <input type="text" formControlName="email" class="form-control"/>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.generalsettings.Phonenumber'| translate}}</label>
+                        <input type="text" formControlName="phonenumber" class="form-control"/>
+
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xs-12">
+
+                    <div class="form-group">
+                        <div class="image-col">
+                            <div class="img-dflt">
+                                <input type="file" name="userImg" (change)="uploadChange($event)" accept="image/*"
+                                       #filePath
+                                       style="display: none">
+                                <img [src]="postImageUrl" width="13%" height="13%">
+                                <p></p>
+                                <button (click)="uploadButtonClick()" type="button">
+                                    {{'Settings.Local.Language.UploadPic' | translate}}
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.generalsettings.Country'| translate}}</label>
+                        <select class="form-control custom-select" data-placeholder="Choose Country"
+                                formControlName="country" placeholder="Country">
+                            <option *ngFor="let country of countrysandbox.getcountries$ | async"
+                                    value={{country.countryId}}>
+                                {{country.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.generalsettings.Region/State'| translate}}</label>
+                        <select class="form-control custom-select" data-placeholder="Choose Region"
+
+                                formControlName="zone" placeholder="Region">
+                            <option *ngFor="let zone of zonesandbox.getzoneslist$ | async"
+                                    value={{zone.zoneId}}>
+                                {{zone.name}}
+                            </option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.generalsettings.Language'| translate}}</label>
+                        <select class="form-control custom-select" data-placeholder="Choose Region"
+
+                                formControlName="language" placeholder="Language">
+                            <option *ngFor="let langlist of languageSandbox.getlanguagelist$ | async"
+                                    value={{langlist.name}}>
+                                {{langlist.name}}
+                            </option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">{{'Settings.generalsettings.Currency'| translate}}</label>
+                        <select class="form-control custom-select" data-placeholder="Choose Currency"
+
+                                formControlName="currency" placeholder="Currency">
+                            <option *ngFor="let currencylist of currencysandbox.currencyList$ | async"
+                                    value={{currencylist.currencyId}}>
+                                {{currencylist.title}}
+                            </option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{'Settings.generalsettings.MaintenanceMode' | translate}}</label>
+                        <div class="radio">
+                            <mat-radio-group formControlName="maintenanceMode"  fxLayout="column" fxLayoutGap=".25rem">
+                                <mat-radio-button
+                                        [value]="'Yes'">{{'Settings.personalize.product.Yes' | translate}}</mat-radio-button>
+                                <mat-radio-button
+                                        [value]="'No'">{{'Settings.personalize.product.No' | translate}}</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="flex user-btn">`
+                        <button type="submit"
+                                class="btn btn-add">{{'Settings.generalsettings.Save'| translate}}</button>
+                        <button (click)="generalsettingcancel()"
+                                class="btn btn-cancel">{{'Settings.generalsettings.Cancel'| translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
