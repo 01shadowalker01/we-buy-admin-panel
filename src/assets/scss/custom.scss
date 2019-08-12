@@ -405,6 +405,7 @@ thead {
 
 .product-ts-left {
   //width: 100%;
+  text-align: right;
   width: calc(100% - 0px);
 
   ul {
@@ -423,7 +424,7 @@ thead {
       padding: 10px;
 
       button {
-        float: right;
+        float: left;
         margin-right: 0;
         background: transparent;
         padding: 0;
