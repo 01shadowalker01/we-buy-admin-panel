@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600');
-
+@import "assets/fonts/Vazir/font.css";
+@import "assets/fonts/Nunito/font-face.css";
 
 .modelRef .modal-content {
   width: 50%;
@@ -16,7 +17,7 @@
 
 body {
   margin: 0;
-  font-family: Roboto !important;
+  font-family: Nunito, Vazir, Roboto !important;
 }
 
 .tgl-btn {
