@@ -32,8 +32,8 @@ export class LayoutSandbox implements OnInit {
     ngOnInit() {
         this.mylanguage = localStorage.getItem('defaultlanguage');
         if (!this.mylanguage) {
-            this.translate.setDefaultLang('en');
-            this.translate.use('en');
+            this.translate.setDefaultLang('fa');
+            this.translate.use('fa');
         } else {
             if (this.mylanguage === 'en') {
                 this.translate.use('en');
