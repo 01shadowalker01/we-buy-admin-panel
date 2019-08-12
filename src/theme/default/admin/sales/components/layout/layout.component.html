@@ -16,12 +16,12 @@
           </li>
           <li>
             <p>{{'Sales.Orders.TotalOrderAmount'| translate}}</p>
-            <h3> {{(layoutSandbox.totalOrderAmount$ | async) | currency:'INR'}}  <button type="button" class="btn" placement="right" ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
+            <h3> {{(layoutSandbox.totalOrderAmount$ | async) | persianCurrency}}  <button type="button" class="btn" placement="right" ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
                 <img src="assets/img/info-ico.png"> </button></h3>
           </li>
           <li>
             <p>{{'Sales.Orders.TodayOrderAmount'| translate}}</p>
-            <h3>{{(layoutSandbox.todayOrderAmount$ | async) | currency:'INR'}}  <button type="button" class="btn" placement="left" ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
+            <h3>{{(layoutSandbox.todayOrderAmount$ | async) | persianCurrency}}  <button type="button" class="btn" placement="left" ngbTooltip="{{'Customers.ToolTip.Tooltiponright'| translate}}">
                 <img src="assets/img/info-ico.png"> </button></h3>
           </li>
         </ul>

@@ -111,16 +111,14 @@
 
                     <td style="cursor: pointer" (click)="updateProduct(product.productId)">{{product.quantity}}</td>
                     <td *ngIf="product.flag === 1"  style="cursor: pointer;" (click)="updateProduct(product.productId)">
-                        <p  *ngIf="product.flag == 1"> <del>{{product.price |
-                            currency:'INR':'symbol-narrow'}}</del></p>
-                        <p style="color: red"  *ngIf="product.flag == 1">{{product.pricerefer |
-                            currency:'INR':'symbol-narrow'}}</p>
+                        <p  *ngIf="product.flag == 1"> <del>{{product.price | persianCurrency}}</del></p>
+                        <p style="color: red"  *ngIf="product.flag == 1">{{product.pricerefer | persianCurrency}}</p>
                     </td>
                     <td *ngIf="product.flag === 0"  style="cursor: pointer;" (click)="updateProduct(product.productId)">
                         <p *ngIf="product.pricerefer">{{product.pricerefer |
-                            currency:'INR':'symbol-narrow'}}</p>
+                            persianCurrency}}</p>
                         <p *ngIf="!product.pricerefer">{{product.price |
-                            currency:'INR':'symbol-narrow'}}</p>
+                            persianCurrency}}</p>
                     </td>
 
 

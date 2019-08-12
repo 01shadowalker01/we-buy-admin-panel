@@ -103,7 +103,7 @@
                 <div class="bh-content">
                     <h5>{{productdetail.name}} </h5>
                     <p> Order Date :{{productdetail.createdDate | date:'MMM d, y, h:mm:ss a'}} </p>
-                    <p> Price : {{productdetail.productDetails[0].price| currency :'INR':'symbol-narrow'}} </p>
+                    <p> Price : {{productdetail.productDetails[0].price| persianCurrency}} </p>
                 </div>
                 <h3></h3>
             </li>

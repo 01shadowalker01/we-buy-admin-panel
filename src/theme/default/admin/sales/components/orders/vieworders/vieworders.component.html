@@ -118,14 +118,14 @@
                                 {{orderinfo.name}} : {{orderinfo.value}}
                             </div>
                         </td>
-                        <td class="text-right">{{order.productPrice | currency:'INR':'symbol-narrow'}}</td>
+                        <td class="text-right">{{order.productPrice | persianCurrency}}</td>
                         <td class="text-right">{{order.quantity}}</td>
-                        <td class="text-right">{{order.total | currency:'INR':'symbol-narrow'}}</td>
+                        <td class="text-right">{{order.total | persianCurrency}}</td>
 
                     </tr>
                     <tr>
                         <td colspan="3" class="text-right total-amount">{{'Sales.Orders.TotalAmount'| translate}} </td>
-                        <td class="text-right total-amount"><b>{{detail.total | currency:'INR':'symbol-narrow'}}</b>
+                        <td class="text-right total-amount"><b>{{detail.total | persianCurrency}}</b>
                         </td>
                     </tr>
                 </table>

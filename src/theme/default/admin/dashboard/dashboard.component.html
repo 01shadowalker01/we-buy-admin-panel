@@ -50,7 +50,7 @@
                             <span style="margin-left: -2px"
                                   *ngIf="topSellingProducts.product.name.length > 70">...</span>
                         </span>
-                        <p class="top-selling-amount">{{topSellingProducts.product.price | currency:'INR':'symbol-narrow'}}</p>
+                        <p class="top-selling-amount">{{topSellingProducts.product.price | persianCurrency}}</p>
                     </div>
                 </div>
                 <span (click)="viewProduct(topSellingProducts.product.productId)"
@@ -133,7 +133,7 @@
                     <img src="./assets/error-images/Load icon Products.png"
                          [hidden]="recentSellingImage[product.orderId]">
                     <span class="text-content">{{product.ProductName | slice:0:30}}</span>
-                    <span class="amount">{{product.Total | currency:'INR':'symbol-narrow'}}</span>
+                    <span class="amount">{{product.Total | persianCurrency}}</span>
                     <span (click)="viewOrder(product.orderId)" class="View">{{'Dashboard.View'| translate}}</span>
                 </div>
                 <br>
