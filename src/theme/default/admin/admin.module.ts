@@ -9,7 +9,7 @@
  */
 import {BrowserModule} from '@angular/platform-browser';
 // import { APP_BASE_HREF } from '@angular/common';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule, LOCALE_ID} from '@angular/core';
 import {DefaultRoutingModule} from './admin-routing.module';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../../../environments/environment';
@@ -21,7 +21,7 @@ import {StoreModule} from '@ngrx/store';
 import {metaReducers, reducers} from '../../../core/app.reducers';
 import {HTTPStatus, RequestInterceptor} from '../../../core/admin/providers/CommonInterceptor';
 import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
-import {CommonModule, HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {CommonModule, HashLocationStrategy, LocationStrategy, CurrencyPipe} from '@angular/common';
 import {MaterialModule} from '../default.material.module';
 import {AppApiClient} from '../../../core/appApiClient.service';
 import {AuthGuard} from '../../../core/admin/providers/auth.guard';
@@ -50,6 +50,12 @@ import {OrderstatusApiClientService} from '../../../core/admin/settings/localiza
 import {CKEditorModule} from 'ng2-ckeditor';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NumberAcceptModule} from '../../../core/admin/shared/validation-directives/onlyNumber.module';
+import { registerLocaleData } from "@angular/common";
+import localeFr from "@angular/common/locales/fr";
+import { PersianCurrencyPipe } from '../../../core/admin/shared/pipes/persian-currency.pipe';
+
+// the second parameter 'fr' is optional
+registerLocaleData(localeFr, "fr");
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, 'assets/i18n/');
@@ -73,7 +79,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         EditprofileComponent,
         ImagemanagerpopupComponent,
         CONTAINERS.AuthLayoutComponent,
-        CONTAINERS.CommonLayoutComponent
+        CONTAINERS.CommonLayoutComponent,
+        PersianCurrencyPipe
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'spurtcommerce'}),
@@ -103,7 +110,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
             }
         })
     ],
-    providers: [{
+    providers: [
+        CurrencyPipe,
+        { provide: LOCALE_ID, useValue: "fr-FR" },
+    {
         provide: PERFECT_SCROLLBAR_CONFIG,
         useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
