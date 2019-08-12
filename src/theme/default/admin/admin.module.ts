@@ -52,7 +52,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NumberAcceptModule} from '../../../core/admin/shared/validation-directives/onlyNumber.module';
 import { registerLocaleData } from "@angular/common";
 import localeFr from "@angular/common/locales/fr";
-import { PersianCurrencyPipe } from '../../../core/admin/shared/pipes/persian-currency.pipe';
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, "fr");
@@ -79,8 +78,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         EditprofileComponent,
         ImagemanagerpopupComponent,
         CONTAINERS.AuthLayoutComponent,
-        CONTAINERS.CommonLayoutComponent,
-        PersianCurrencyPipe
+        CONTAINERS.CommonLayoutComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'spurtcommerce'}),

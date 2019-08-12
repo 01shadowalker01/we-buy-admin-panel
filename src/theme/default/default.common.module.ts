@@ -11,18 +11,21 @@ import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SelectDropDownModule} from 'ngx-select-dropdown';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { PersianCurrencyPipe } from '../../core/admin/shared/pipes/persian-currency.pipe';
 
 
 @NgModule({
+    declarations: [PersianCurrencyPipe],
     imports: [
         NgbModule,
         SelectDropDownModule,
-        NgxChartsModule
+        NgxChartsModule        
     ],
     exports: [
         NgbModule,
         SelectDropDownModule,
-        NgxChartsModule
+        NgxChartsModule,
+        PersianCurrencyPipe
     ],
     providers: [],
 })
