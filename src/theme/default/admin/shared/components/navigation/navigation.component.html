@@ -1,3 +1,5 @@
+<app-profile-bar (logout)="logout.emit($event)"
+[userDetails]="userDetails"></app-profile-bar>
 <!-- ============================================================== -->
 <!-- toggle and nav items -->
 <!-- ============================================================== -->
@@ -48,6 +50,4 @@
 <!-- ============================================================== -->
 <!-- Right side toggle and nav items -->
 <!-- ============================================================== -->
-<app-profile-bar (logout)="logout.emit($event)"
-                 [userDetails]="userDetails"></app-profile-bar>
 
