@@ -11,7 +11,7 @@
       "Action": "عمل",
       "NewPage": "اضافه کردن صفحه",
       "AddPage": "اضافه کردن صفحه",
-      "Save": "صرفه جویی در",
+      "Save": "ذخیره کردن",
       "Cancel": "لغو",
       "GeneralInformation": "اطلاعات کلی",
       "PageTitle": "عنوان صفحه",
@@ -59,7 +59,7 @@
       "Action": "عمل",
       "NewBanners": "اضافه کردن بنر",
       "AddBanners": "اضافه کردن بنر",
-      "Save": "صرفه جویی در",
+      "Save": "ذخیره کردن",
       "Cancel": "لغو",
       "BannerTitle": "عنوان بنر",
       "UploadPic": "آپلود عکس"
@@ -94,8 +94,8 @@
       "OrderId": "شناسه سفارش",
       "CustomerName": "نام مشتری",
       "TotalAmount": "کل مبلغ",
-      "DateAdded": "به منظور ایجاد",
-      "MoreFilter": "بیشتر فیلتر",
+      "DateAdded": "تاریخ سفارش",
+      "MoreFilter": "فیلتر بیشتر",
       "ApplyFilters": "اعمال فیلتر",
       "Reset": "تنظیم مجدد",
       "Export": "صادرات",
@@ -103,13 +103,13 @@
       "Status": "وضعیت",
       "Action": "عمل",
       "View": "مشاهده",
-      "DateModified": "سفارش به روز شده",
+      "DateModified": "تاریخ تغییر سفارش",
       "Delete": "حذف",
       "Payments": "پرداخت",
       "Shipping": "حمل و نقل",
       "Invoices": "فاکتورها",
       "Active": "فعال",
-      "In-Active": "در - فعال",
+      "In-Active": "غیر فعال",
       "TotalOrder": "کل سفارشات",
       "TodayOrder": "امروز سفارشات",
       "TotalOrderAmount": " مجموع سفارشات امروز",
@@ -174,7 +174,7 @@
       "MoreInformation": "اطلاعات بیشتر",
       "General": "عمومی",
       "Password": "رمز عبور",
-      "Save": "صرفه جویی در",
+      "Save": "ذخیره کردن",
       "Cancel": "لغو",
       "CustomerDetails": "مشتری جزئیات",
       "ConfirmPassword": "تکرار رمز عبور",
@@ -256,7 +256,7 @@
       "MetaTitle": "MetaTitle",
       "MetaTagDescription": "MetaTagDescription",
       "MetatagKeyword": "MetatagKeyword",
-      "Save": "صرفه جویی در",
+      "Save": "ذخیره کردن",
       "Cancel": "لغو"
     },
     "Social": {
@@ -267,7 +267,7 @@
       "Instagram": "Instagram",
       "TwitterLink": "لینک توییتر",
       "GoogleLink": "GoogleLink",
-      "Save": "صرفه جویی در",
+      "Save": "ذخیره کردن",
       "Cancel": "لغو"
     },
     "Common": {
@@ -294,7 +294,7 @@
       "Region/State": "منطقه / دولت",
       "Language": "زبان",
       "Currency": "ارز",
-      "Save": "صرفه جویی در",
+      "Save": "ذخیره کردن",
       "Cancel": "لغو",
       "Store": "فروشگاه",
       "MaintenanceMode": "حالت تعمیر و نگهداری"
@@ -312,7 +312,7 @@
       "Action": "عمل",
       "AddNewRole": "اضافه کردن نقش",
       "Active": "فعال",
-      "InActive": "در - فعال",
+      "InActive": "غیر فعال",
       "RoleName": "نام نقش",
       "AddNew": "اضافه کردن جدید",
       "Cancel": "لغو",
@@ -352,19 +352,19 @@
         "Yes": "بله",
         "No": "هیچ",
         "DefaultItemsPerPage": "به طور پیش فرض آیتم ها در هر صفحه(Admin)",
-        "Save": "صرفه جویی در",
+        "Save": "ذخیره کردن",
         "Cancel": "لغو"
       },
       "order": {
         "SettingsPath": "تنظیمات > Personolize > سفارش",
         "InvoicePrefix": "فاکتور پیشوند",
         "OrderStatus": "وضعیت سفارش",
-        "Save": "صرفه جویی در",
+        "Save": "ذخیره کردن",
         "Cancel": "لغو"
       }
     },
     "Local": {
-      "Save": "صرفه جویی در",
+      "Save": "ذخیره کردن",
       "Country": {
         "CountriesList": "تنظیمات > بومی سازی > کشورها",
         "CountryName": "نام کشور",
@@ -412,7 +412,7 @@
         }
       },
       "Orderstatus": {
-        "Save": "صرفه جویی در",
+        "Save": "ذخیره کردن",
         "AddOrderStatus": "اضافه کردن وضعیت سفارش",
         "OrderStatusName": "وضعیت سفارش نام",
         "Status": "وضعیت",
@@ -426,7 +426,7 @@
         "OrderStatusList": "وضعیت سفارش لیست",
         "Action": "عمل",
         "Active": "فعال",
-        "InActive": "در - فعال",
+        "InActive": "غیر فعال",
         "Error": {
           "OrderStatusNameisrequired": "وضعیت سفارش نام الزامی است",
           "OrderStatusisrequired": "وضعیت سفارش وضعیت الزامی است"
@@ -471,7 +471,7 @@
         }
       },
       "StockStatus": {
-        "Save": "صرفه جویی در",
+        "Save": "ذخیره کردن",
         "AddStockStatus": "اضافه کردن وضعیت سهام",
         "StockStatusName": "وضعیت سهام نام",
         "Code": "کد",
@@ -482,7 +482,7 @@
         "Cancel": "لغو",
         "UploadPic": "آپلود عکس",
         "Active": "فعال",
-        "InActive": "در - فعال",
+        "InActive": "غیر فعال",
         "StockStatusList": "وضعیت سهام لیست",
         "Action": "عمل",
         "Settingspath": "تنظیمات > بومی سازی > وضعیت سهام",
@@ -543,7 +543,7 @@
       "PhoneNumber": "شماره تلفن",
       "Address": "آدرس",
       "profileImage": "مشخصات تصویر",
-      "Save": "صرفه جویی در",
+      "Save": "ذخیره کردن",
       "Cancel": "لغو",
       "Change": "تغییر"
     },
@@ -626,7 +626,7 @@
       "Min-price": "حداقل قیمت",
       "Max-price": "Max-قیمت",
       "EnterSearchProductName": "نام محصول را وارد کنید",
-      "SkuNumber": "تعداد SKU",
+      "SkuNumber": "شماره SKU",
       "Reset": "تنظیم مجدد",
       "ApplyFilters": "اعمال فیلتر",
       "Search": "جستجو",
@@ -634,7 +634,7 @@
       "No": "هیچ",
       "Filters": "فیلتر",
       "Yes": "بله",
-      "Save": "صرفه جویی در",
+      "Save": "ایجاد کالا",
       "Cancel": "لغو",
       "Add": "اضافه کردن",
       "General": "عمومی",
@@ -742,7 +742,7 @@
       "ApplyFilters": "اعمال فیلتر",
       " General": " عمومی",
       "More Information": "اطلاعات بیشتر",
-      "Save": "صرفه جویی در",
+      "Save": "ذخیره کردن",
       "Cancel": "لغو",
       "Parent": "پدر و مادر",
       "Active": "فعال",

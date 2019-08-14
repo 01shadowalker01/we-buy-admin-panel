@@ -15,7 +15,8 @@
   direction: rtl
 }
 
-body {
+body,
+.tooltip-inner {
   margin: 0;
   font-family: Nunito, Vazir, Roboto !important;
 }

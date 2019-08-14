@@ -720,8 +720,8 @@ thead {
 
     .toggle {
       display: inline-block;
-      padding-right: 20px;
-      border-right: solid thin $gray-ddd;
+      padding-left: 20px;
+      border-left: solid thin $gray-ddd;
       vertical-align: top;
     }
 
@@ -730,6 +730,7 @@ thead {
     }
 
     .order-status {
+      text-align: right;
       display: inline-block;
       padding-left: 163px;
 
@@ -878,6 +879,7 @@ thead {
       margin-bottom: 0;
 
       th {
+        text-align: right;
         padding: .5rem;
         vertical-align: middle;
       }
@@ -887,7 +889,7 @@ thead {
       }
 
       td {
-
+        text-align: right;
         padding: .5rem;
         vertical-align: middle;
         color: $black-400;
@@ -953,6 +955,7 @@ thead {
 }
 
 .addproduct-wrap {
+  text-align: right;
   justify-content: flex-start;
   padding: 10px 15px 10px 90px;
 
