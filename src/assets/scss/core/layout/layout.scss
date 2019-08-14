@@ -37,13 +37,12 @@
       text-align: left;
       h3 {
         display: inline-flex;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 17px;
+        font-size: 20px;
         font-weight: $font-weight-medium;
         color: $black-200;
-        border-right: solid thin #ddd;
-        padding-right: 10px;
-        margin-right: 10px;
+        border-left: solid thin #ddd;
+        padding-left: 10px;
+        margin-left: 10px;
       }
       p {
         display: inline-flex;
