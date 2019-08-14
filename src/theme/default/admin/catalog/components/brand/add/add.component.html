@@ -93,9 +93,9 @@
                                 formControlName="status"
                                 placeholder="status"
                                 [ngClass]="{'validationcolor':!brandForm.get('status').valid && !brandForm.get('status').untouched && submitted}">
-                            <option value=''>- -Select Status- -</option>
-                            <option value="1">Enabled</option>
-                            <option value="0">Disabled</option>
+                            <option value=''>- -انتخاب وضعیت- -</option>
+                            <option value="1">فعال</option>
+                            <option value="0">غیر فعال</option>
                         </select>
                         <div class="error"
                              *ngIf="brandForm.get('status').hasError('required') && brandForm.get('status').touched && submitted">

@@ -1,6 +1,6 @@
 <!--<div [formGroup]="prodfilter" class="new-user">-->
 
-<form [formGroup]="filterForm">
+<form [formGroup]="filterForm" class="text-right">
 
     <div class="form-group">
         <label for="keyword">{{'catalog.product.ProductName'| translate}}</label>
@@ -27,11 +27,11 @@
         </div>
     </div>
     <div class="form-group">
-        <label>Status</label>
+        <label>وضعیت</label>
         <select class="custom-select col-12" id="inlineFormCustomSelect" formControlName="status">
-            <option value="" selected>- -Select Status- -</option>
-            <option value="1">Active</option>
-            <option value="0">In-Active</option>
+            <option value="" selected>- -انتخاب وضعیت- -</option>
+            <option value="1">فعال</option>
+            <option value="0">غیر فعال</option>
         </select>
     </div>
     <div class="text-right filter-btns">

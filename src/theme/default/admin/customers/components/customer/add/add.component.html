@@ -152,9 +152,9 @@
                                         <select class="custom-select col-12" [(ngModel)]="status"
                                                 [ngClass]="{ 'is-invalid': submitted && f.status.errors }"
                                                 formControlName="status">
-                                            <option  value="" selected>- -Select Status- -</option>
-                                            <option value= 1 >Enabled</option>
-                                            <option value= 0>Disabled</option>
+                                                <option value='' selected>- -انتخاب وضعیت- -</option>
+                                                <option value="1">فعال</option>
+                                                <option value="0">غیر فعال</option>
                                         </select>
                                         <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
                                             <div *ngIf="f.status.errors.required"> {{'Customers.Error.StatusIsRequired'| translate}} </div>

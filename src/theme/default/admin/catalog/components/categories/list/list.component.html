@@ -84,10 +84,10 @@
                     <td>{{data.level}}</td>
                     <td>{{data.sortOrder}}</td>
                     <td>
-                        <a href="javascript:void(0)" (click)="editCategory(data)"> <img src="assets/img/edit-ico.png">
-                        </a>
+                        <i class="material-icons"><a href="javascript:void(0)" style="color: black;" (click)="editCategory(data)">edit
+                        </a></i>
                         <i [ngbPopover]="deleteContent" placement="bottom" #deletePop="ngbPopover"
-                           style="margin-left: 15px;" class="fas fa-trash">
+                           style="margin-left: 15px;" class="material-icons">delete
                             <ng-template #deleteContent>
                                 <div class="style">
                                     <div class="modal-header">

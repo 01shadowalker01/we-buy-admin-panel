@@ -27,8 +27,8 @@
                 <div class="order-status">
                     <p>{{'Sales.Orders.Status'| translate}}</p>
                     <li style="list-style: none">
-                        <span style="display: inline-block;width: 14px;height: 16px;margin-right: 6px;vertical-align: middle;background-color: #32b643;"></span>Active
-                        <span style="display: inline-block;width: 14px;height: 16px;margin-left: 3px;margin-right: 7px;vertical-align: middle;background-color: #ea5738e6;"></span>In Active
+                        <span style="display: inline-block;width: 14px;height: 16px;margin-right: 6px;vertical-align: middle;background-color: #32b643;"></span>فعال
+                        <span style="display: inline-block;width: 14px;height: 16px;margin-left: 3px;margin-right: 7px;vertical-align: middle;background-color: #ea5738e6;"></span>غیر فعال
 
                     </li>
                 </div>
@@ -142,13 +142,13 @@
                     </td>
 
                     <td>
-                        <i style="cursor: pointer; font-size: 15px" class="fas fa-globe globe_icon"
-                           (click)="product_Details(product.productId)"></i>
-                        <a class="globe_icon" style="cursor: pointer" href="javascript:void(0)"
-                           (click)="updateProduct(product.productId)"> <img
-                                src="assets/img/edit-ico.png"> </a>
+                        <i style="cursor: pointer" class="material-icons globe_icon"
+                           (click)="product_Details(product.productId)">remove_red_eye</i>
+                           <i class="material-icons"><a class="globe_icon" style="cursor: pointer; color: black" href="javascript:void(0)"
+                           (click)="updateProduct(product.productId)"> edit </a></i>
                         <i [ngbPopover]="deleteContent" placement="bottom" #deletePop="ngbPopover"
-                           style="margin-left: -2px; cursor: pointer" class="fas fa-trash globe_icon">
+                           style="margin-left: -2px; cursor: pointer" class="material-icons globe_icon">
+                           delete
                             <ng-template #deleteContent>
                                 <div class="style">
                                     <div class="modal-header">
