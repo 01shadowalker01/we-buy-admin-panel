@@ -8,7 +8,7 @@
     width: 50%;
     height: 100%;
     top: 0%;
-    left: 0%;
+    right: 0%;
     text-align: center;
     padding: 40px;
     background: url(../../assets/img/login-left-bg.png) no-repeat;
@@ -35,7 +35,7 @@
     text-align: center;
     position: relative;
     display: block;
-    margin-left: 450px;
+    margin-right: 450px;
     .logo{
       text-align: center;
     }
@@ -52,7 +52,6 @@
         font-weight: 500;
         color: $black-300;
         margin-bottom: 20px;
-        letter-spacing: 2px;
       }
       .input-group {
         label {
@@ -96,13 +95,12 @@
       width: 320px;
       left: 0;
       right: 0;
-      text-align: left;
+      text-align: right;
       h3 {
         font-size: $h3-font-size;
         font-weight: 500;
         color: $black-300;
         margin-bottom: 20px;
-        letter-spacing: 2px;
       }
       .input-group {
         label {

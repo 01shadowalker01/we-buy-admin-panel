@@ -1,5 +1,5 @@
 <div class="auth-box on-sidebar">
-  <div class="loginform" style="left: 25%;">
+  <div class="loginform" style="right: 25%;">
     <!-- Form -->
     <div class="row">
       <div class="col-12">
@@ -8,12 +8,12 @@
           [formGroup]="loginForm"
           class="form-horizontal m-t-20"
         >
-          <h3>Login here</h3>
+          <h3>ورود به سیستم</h3>
           <div class="input-group mb-4">
             <input
               type="text"
               class="form-control form-control-md"
-              placeholder="User Name"
+              placeholder="نام کاربری"
               aria-label="username"
               aria-describedby="basic-addon1"
               formControlName="username"
@@ -36,7 +36,7 @@
               ifSubmitted == true
             "
           >
-            username required
+            نام کاربری الزامی است
           </div>
           <div
             class="error"
@@ -46,14 +46,14 @@
               ifSubmitted == true
             "
           >
-            Incorrect email
+            ایمیل نامعتبر است
           </div>
           <!---->
           <div class="input-group mb-4">
             <input
               type="password"
               class="form-control form-control-md"
-              placeholder="Password"
+              placeholder="رمز عبور"
               aria-label="password"
               aria-describedby="basic-addon1"
               formControlName="password"
@@ -76,28 +76,17 @@
               ifSubmitted == true
             "
           >
-            password required
+            رمز عبور الزامی است
           </div>
           <div class="error" *ngIf="badResponse == true">
-            username or password is incorrect
+            نام کاربری یا رمز عبور اشتباه وارد شده است
           </div>
 
           <!---->
           <div novalidate class="form-group row">
-            <div class="col-md-6">
-              <div class="custom-control custom-checkbox">
-                <a
-                  href="javascript:void(0)"
-                  [routerLink]="['/auth/forgot-password']"
-                  class="text-dark"
-                >
-                  Forgot password?</a
-                >
-              </div>
-            </div>
             <div class="col-md-6 p-b-20">
               <button class="btn btn-block btn-info  float-right" type="submit">
-                Login
+                ورود
                 <span
                   [hidden]="!(authSandbox.loginLoading$ | async)"
                   class="spinner-border spinner-border-sm pull-right"
@@ -105,6 +94,17 @@
                   aria-hidden="true"
                 ></span>
               </button>
+            </div>
+            <div class="col-md-6">
+              <div class="custom-control custom-checkbox">
+                <a
+                  href="javascript:void(0)"
+                  [routerLink]="['/auth/forgot-password']"
+                  class="text-dark"
+                >
+                  فراموشی رمز عبور؟
+                </a>
+              </div>
             </div>
           </div>
         </form>

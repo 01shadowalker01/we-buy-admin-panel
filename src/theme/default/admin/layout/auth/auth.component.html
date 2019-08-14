@@ -1,18 +1,16 @@
 <div class="auth-wrapper">
-    <div class="logo-left">
-        <img src="assets/img/logo-v22.png">
-        <h3> Welcome </h3>
-        <p>
-             <span>
-                Spurt Demo
-            </span>- technology and thoughtfulness combine for a seamless eCommerce
-        </p>
-    </div>
-    <!--Left-->
+  <router-outlet></router-outlet>
+  <div class="logo-left">
+    <img src="assets/img/logo-v22.png" />
+    <h3>{{ "Profile.Auth.Welcome" | translate }}</h3>
+    <p>
+      <span>پنل مدیریت</span>
+      - پنل مدیریتی پیشرفته با امکاناتی چشمگیر
+    </p>
+  </div>
+  <!--Left-->
 
-
-    <!-- ============================================================== -->
-    <!-- Only router without any element -->
-    <!-- ============================================================== -->
-    <router-outlet></router-outlet>
+  <!-- ============================================================== -->
+  <!-- Only router without any element -->
+  <!-- ============================================================== -->
 </div>
