@@ -85,20 +85,26 @@
 
   .overflow {
     margin-top: 10px;
-    text-align: left;
-    padding: 2px;
+    text-align: right;
+    padding: 6px;
   }
 
   .top-selling-amount {
     font-weight: 600;
     font-size: 1.2em;
     margin-top: 10px;
-    text-align: left;
+    text-align: right;
 
   }
 }
 
 .dashboard {
+  text-align: center;
+
+  h3 {
+    margin: 2rem auto;
+  }
+
   .chart-legend {
     display: none !important;
   }
@@ -207,10 +213,11 @@
       display: flex;
       flex-flow: column;
       font-size: 17px;
-      border-right: 2px solid #d8d8d8;
-      padding-right: 7%;
+      border-left: 2px solid #d8d8d8;
+      padding-left: 7%;
       margin-left: -5%;
       margin-top: 0.4%;
+      text-align: center;
     }
 
     #content {
