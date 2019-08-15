@@ -111,9 +111,9 @@
       "Active": "فعال",
       "In-Active": "غیر فعال",
       "TotalOrder": "کل سفارشات",
-      "TodayOrder": "امروز سفارشات",
+      "TodayOrder": "سفارشات امروز",
       "TotalOrderAmount": " مجموع سفارشات امروز",
-      "TodayOrderAmount": "مقدار سفارشات امروز",
+      "TodayOrderAmount": "تعداد سفارشات امروز",
       "DownloadInvoice": "دانلود فاکتور",
       "ViewOrders": "مشاهده سفارش",
       "CustomerInformation": "اطلاعات مربوط به مشتری",
@@ -609,8 +609,8 @@
     "product": {
       "Products": "محصولات",
       "AddProduct": "اضافه کردن محصول",
-      "ActiveProducts": "فعال محصولات",
-      "In-activeProducts": "در-فعال محصولات",
+      "ActiveProducts": "محصولات فعال",
+      "In-activeProducts": "محصولات غیرفعال",
       "New": "جدید",
       "Catalog": "فروشگاه",
       "Export": "صادرات",
@@ -661,7 +661,7 @@
       "SortOrder": " مرتب کردن بر اساس سفارش",
       "Condition": "وضعیت",
       "Addimages": "اضافه کردن تصاویر",
-      "Feature": "ویژگی است",
+      "Feature": "ویژگی",
       "RelatedProducts": "محصولات مرتبط",
       "Option": "گزینه",
       "OptionValue": "گزینه ارزش",
@@ -686,8 +686,8 @@
       }
     },
     "layout": {
-      "ActiveProducts": "فعال محصولات",
-      "InActiveProducts": "در-فعال محصولات",
+      "ActiveProducts": "محصولات فعال",
+      "InActiveProducts": "محصولات غیرفعال",
       "Search": "جستجو",
       "Products": "محصولات",
       "New": "جدید"
@@ -749,8 +749,8 @@
       "MetaTagDescription": "متا تگ توضیحات",
       "MetaTagKeyword": "متا تگ کلمات کلیدی",
       "TotalProduct": "کل محصولات",
-      "ActiveProduct": "فعال محصولات",
-      "In-ActiveProduct": "در-فعال محصولات",
+      "ActiveProduct": "محصولات فعال",
+      "In-ActiveProduct": "محصولات غیرفعال",
       "TotalCategory": "مجموع دسته بندی",
       "FeaturedProduct": "محصولات ویژه",
       "TotalBrand": "کل برندها"
