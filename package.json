@@ -70,12 +70,12 @@
     "rxjs-compat": "6.0.0",
     "ts-loader": "^5.3.3",
     "tslib": "^1.9.0",
-    "webpack-cli": "^3.3.0",
+    "webpack-cli": "^3.3.12",
     "zone.js": "^0.8.29"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^7.4.3",
-    "@angular-devkit/build-angular": "^0.13.0",
+    "@angular-devkit/build-angular": "^15.0.0",
     "@angular-devkit/core": "^7.2.3",
     "@angular/cli": "^6.0.8",
     "@angular/compiler-cli": "~7.1.0",
@@ -96,7 +96,7 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "3.1.6",
-    "webpack-cli": "^3.1.0",
+    "webpack-cli": "^3.3.12",
     "ws": "^6.2.2",
     "xmlhttprequest": "^1.8.0"
   }
